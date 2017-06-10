@@ -12,13 +12,37 @@ public class NaveScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {}
+	void Update () {
+
+
+
+		if (Input.GetKey (KeyCode.LeftArrow)) {
+			transform.eulerAngles = new Vector3 (0, 0, 15);
+		} 
+		else if (Input.GetKey (KeyCode.RightArrow)) {
+			transform.eulerAngles = new Vector3 (0, 0, 345);
+		}
+		else {
+			transform.eulerAngles = new Vector3 (0, 0, 0);
+		}
+
+
+
+
+	}
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            rb.AddForce(Vector2.up * 20);
-        }
+		if (Input.GetKey(KeyCode.Space))
+		{
+			rb.AddForce(Vector2.up * 5);
+
+			if (Input.GetKey (KeyCode.LeftArrow)) {
+				rb.AddForce (Vector2.left * 2);
+			}
+			else if (Input.GetKey (KeyCode.RightArrow)){
+				rb.AddForce(Vector2.right * 2);
+			}
+		}
     }
 }
