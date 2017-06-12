@@ -14,6 +14,7 @@ public class NaveScript : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
 		rb.gravityScale = 0.00001f;
 		rb.AddForce(Vector2.right * 20);
+		transform.eulerAngles = new Vector3 (0,0,-15);
 	}
 	
 	// Update is called once per frame
@@ -22,17 +23,15 @@ public class NaveScript : MonoBehaviour {
 		timer += Time.deltaTime;
 
 		if (Input.GetKey (KeyCode.LeftArrow)) {
-			transform.eulerAngles = new Vector3 (0, 0, 15);
+			transform.eulerAngles += Vector3.forward;
 		} 
 		else if (Input.GetKey (KeyCode.RightArrow)) {
-			transform.eulerAngles = new Vector3 (0, 0, 345);
-		}
-		else {
-			transform.eulerAngles = new Vector3 (0, 0, 0);
+			transform.eulerAngles += Vector3.back;
 		}
 
+
 		if (gravityEstable || timer > 5.0f){
-			rb.gravityScale = 0.2f;
+			rb.gravityScale = 0.02f;
 		}
 
 
@@ -42,15 +41,15 @@ public class NaveScript : MonoBehaviour {
     {
 		if (Input.GetKey(KeyCode.Space))
 		{
-			rb.AddForce(Vector2.up * 5);
+			rb.AddRelativeForce(Vector2.up * 2);
 			gravityEstable = true;
 
-			if (Input.GetKey (KeyCode.LeftArrow)) {
+			/*if (Input.GetKey (KeyCode.LeftArrow)) {
 				rb.AddForce (Vector2.left * 2);
 			}
 			else if (Input.GetKey (KeyCode.RightArrow)){
 				rb.AddForce(Vector2.right * 2);
-			}
+			}*/
 		}
     }
 
@@ -59,7 +58,7 @@ public class NaveScript : MonoBehaviour {
 
 		//print(rb.velocity.magnitude);
 
-		if (rb.velocity.magnitude > 0.0002f) {
+		if (rb.velocity.magnitude > 0.001f) {
 			print ("Perdiste");
 		} else {
 			print ("Ganaste");
