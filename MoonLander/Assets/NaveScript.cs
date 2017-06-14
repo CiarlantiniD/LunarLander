@@ -31,7 +31,7 @@ public class NaveScript : MonoBehaviour {
 
 
 		if (gravityEstable || timer > 5.0f){
-			rb.gravityScale = 0.02f;
+			rb.gravityScale = 0.002f;
 		}
 
 
@@ -41,22 +41,13 @@ public class NaveScript : MonoBehaviour {
     {
 		if (Input.GetKey(KeyCode.Space))
 		{
-			rb.AddRelativeForce(Vector2.up * 2);
+			rb.AddRelativeForce(Vector2.up);
 			gravityEstable = true;
-
-			/*if (Input.GetKey (KeyCode.LeftArrow)) {
-				rb.AddForce (Vector2.left * 2);
-			}
-			else if (Input.GetKey (KeyCode.RightArrow)){
-				rb.AddForce(Vector2.right * 2);
-			}*/
 		}
     }
 
 
 	void OnCollisionEnter2D(Collision2D coll){
-
-		//print(rb.velocity.magnitude);
 
 		if (rb.velocity.magnitude > 0.001f) {
 			print ("Perdiste");
