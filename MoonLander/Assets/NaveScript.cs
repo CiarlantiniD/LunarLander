@@ -49,7 +49,11 @@ public class NaveScript : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll){
 
-		if (rb.velocity.magnitude > 0.001f) {
+        //rb.velocity.magnitude > 0.001f
+        print(coll.relativeVelocity.magnitude);
+
+
+        if (coll.relativeVelocity.magnitude > 0.6f) {
 			print ("Perdiste");
 		} else {
 			print ("Ganaste");
