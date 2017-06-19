@@ -11,7 +11,7 @@ public class NaveScript : MonoBehaviour {
 	bool alive = true;
 
 
-	private int fuel = 10000;
+	private int fuel = 1000;
 
 	// Use this for initialization
 	void Start () {
@@ -26,10 +26,10 @@ public class NaveScript : MonoBehaviour {
 
 		timer += Time.deltaTime;
 
-		if (Input.GetKey (KeyCode.LeftArrow)) {
+		if (Input.GetKey (KeyCode.LeftArrow) && fuel > -1) {
 			transform.eulerAngles += Vector3.forward;
 		} 
-		else if (Input.GetKey (KeyCode.RightArrow)) {
+		else if (Input.GetKey (KeyCode.RightArrow) && fuel > -1) {
 			transform.eulerAngles += Vector3.back;
 		}
 
@@ -47,11 +47,11 @@ public class NaveScript : MonoBehaviour {
 
     void FixedUpdate()
     {
-		if (Input.GetKey(KeyCode.Space))
+		if (Input.GetKey(KeyCode.Space) && fuel > -1)
 		{
 			rb.AddRelativeForce(Vector2.up);
 			gravityEstable = true;
-			fuel -= 5;
+			fuel -= 1;
 		}
     }
 

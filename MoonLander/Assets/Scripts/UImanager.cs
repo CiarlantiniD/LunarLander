@@ -5,48 +5,38 @@ using UnityEngine.UI;
 
 public class UImanager : MonoBehaviour {
 
-	GameObject nave;
-	NaveScript naveScript;
-	int naveFuel;
+	Transform timeUI;
+	Text timerTextUI;
 
-	Transform fuelUI;
-	Text contador;
+	float timer;
+	float seg, min = 0;
 
-	Vector3 distanciaUI;
-
-
-
-	//int temp = 0; // se puede borrat
+	string sMin, sSeg, addMin, addSeg;
 
 	// Use this for initialization
 	void Start () {
-
-
-		fuelUI = transform.FindChild ("FuelUI");
-		contador = fuelUI.GetComponent<Text> ();
-		fuelUI.gameObject.SetActive (false);
-
-
-		nave = GameObject.Find ("Ship");
-		naveScript = nave.GetComponent<NaveScript>();
-
-		distanciaUI = new Vector3 (0.5f,1f,0f);
+		timeUI = transform.FindChild ("TimeTextCount");
+		timerTextUI = timeUI.GetComponent<Text> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		naveFuel = naveScript.GetFuel ();
+		timer = Time.time;
+		seg = (int)timer % 60;
+		min = (int)timer / 60;
 
-		//transform.position = nave.transform.position + distanciaUI; // REVISAR
 
-	
 
-		contador.text = naveFuel.ToString ();
+		sMin = min.ToString ();
+		sSeg = seg.ToString ();
 
-		if (naveFuel < 9500) {
-			fuelUI.gameObject.SetActive (true);
-		}
+		if (seg < 10)
+			sSeg = "0" + sSeg;
 
+		if (min < 10)
+			sMin = "0" + sMin;
+		
+		timerTextUI.text = "'" + sMin + "  '' " + sSeg;
 	}
 }
  
