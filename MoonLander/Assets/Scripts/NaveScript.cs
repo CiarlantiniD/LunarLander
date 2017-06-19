@@ -8,6 +8,10 @@ public class NaveScript : MonoBehaviour {
 
 	float timer = 0f;
 	bool gravityEstable = false;
+	bool alive = true;
+
+
+	protected int fuel = 10000;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +38,10 @@ public class NaveScript : MonoBehaviour {
 			rb.gravityScale = 0.002f;
 		}
 
+		if (fuel <= 0){alive = false;}
+
+		// Condicion de derrota
+		if (!alive){print("Perdiste");}
 
 	}
 
@@ -43,6 +51,7 @@ public class NaveScript : MonoBehaviour {
 		{
 			rb.AddRelativeForce(Vector2.up);
 			gravityEstable = true;
+			fuel -= 1;
 		}
     }
 
@@ -53,9 +62,11 @@ public class NaveScript : MonoBehaviour {
         print(coll.relativeVelocity.magnitude);
 
 
-        if (coll.relativeVelocity.magnitude > 0.6f) {
-			print ("Perdiste");
+
+		if (coll.relativeVelocity.magnitude > 0.6f && transform.rotation.eulerAngles.z < 355.0f && transform.rotation.eulerAngles.z > 5.0f) {
+			alive = false;
 		} else {
+			// Condicion de Victoria
 			print ("Ganaste");
 		}
 	}
