@@ -11,7 +11,7 @@ public class NaveScript : MonoBehaviour {
 	bool alive = true;
 
 
-	protected int fuel = 10000;
+	private int fuel = 10000;
 
 	// Use this for initialization
 	void Start () {
@@ -51,7 +51,7 @@ public class NaveScript : MonoBehaviour {
 		{
 			rb.AddRelativeForce(Vector2.up);
 			gravityEstable = true;
-			fuel -= 1;
+			fuel -= 5;
 		}
     }
 
@@ -70,6 +70,8 @@ public class NaveScript : MonoBehaviour {
 			print ("Ganaste");
 		}
 	}
+
+	public int GetFuel(){return fuel;}
 
 
 }
