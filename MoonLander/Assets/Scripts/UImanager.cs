@@ -5,38 +5,38 @@ using UnityEngine.UI;
 
 public class UImanager : MonoBehaviour {
 
-	Transform timeUI;
-	Text timerTextUI;
+	public static UImanager instance = null; 
 
-	float timer;
-	float seg, min = 0;
+	GameObject nave;
+	NaveScript naveScript;
+	public int naveFuel;
 
-	string sMin, sSeg, addMin, addSeg;
+
+
+
+
+
+	void Awake(){
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy (gameObject);
+	}
+
 
 	// Use this for initialization
 	void Start () {
-		timeUI = transform.FindChild ("TimeTextCount");
-		timerTextUI = timeUI.GetComponent<Text> ();
+		
+
+		nave = GameObject.Find ("Ship");
+		naveScript = nave.GetComponent<NaveScript>();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		timer = Time.time;
-		seg = (int)timer % 60;
-		min = (int)timer / 60;
+		naveFuel = naveScript.GetFuel ();
 
 
-
-		sMin = min.ToString ();
-		sSeg = seg.ToString ();
-
-		if (seg < 10)
-			sSeg = "0" + sSeg;
-
-		if (min < 10)
-			sMin = "0" + sMin;
-		
-		timerTextUI.text = "'" + sMin + "  '' " + sSeg;
 	}
 }
  
