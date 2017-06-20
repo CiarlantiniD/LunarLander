@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public class NaveScript : MonoBehaviour {
 
 
-	public delegate void NaveDestruida();
-	public static event NaveDestruida naveDestroid;
+	//public delegate void NaveDestruida();
+	//public static event NaveDestruida naveDestroid;
 	//UnityEvent NaveLander;
 
     Rigidbody2D rb;
@@ -99,27 +99,36 @@ public class NaveScript : MonoBehaviour {
 
 
 	void OnCollisionEnter2D(Collision2D coll){
-
-		//print(transform.rotation.eulerAngles.z);
-		//print (transform.rotation.z);
-
+		
 		if (coll.relativeVelocity.magnitude > 0.6f)
 			Destroid ();
 		else if (transform.rotation.z > 0.25f || transform.rotation.z < -0.25f)
 			Destroid ();
 		else
-			print ("Ganaste"); // Puede medir la complejidad del aterrizaje y dar ma so manos puntos por eso.
+			Lander(); // Puede medir la complejidad del aterrizaje y dar ma so manos puntos por eso.
 	}
 
 	void OnBecameInvisible(){Destroid();}
 
+
+
+
 	void Destroid(){
-		// + agregar la explicion y el conjelamiento de las conbustible y demas elementos
+		// + Animacion de Destruccion
+		// + Hombre saliendo al espacio
 		alive = false;
 		StopMove ();
 		verticalVel = 0f;
 		print ("Perdiste");
 		//naveDestroid.Invoke ();
+	}
+
+	void Lander(){
+		alive = false;
+		StopMove ();
+		verticalVel = 0f;
+		print ("Ganaste");
+		//naveLander.Invoke ();
 	}
 
 	void StopMove(){
