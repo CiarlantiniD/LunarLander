@@ -5,8 +5,9 @@ using UnityEngine.Events;
 
 public class Main : MonoBehaviour {
 
-	int lifes;
 
+
+	int lifes;
 
 	private int score;
 	private int bestScore;
@@ -17,11 +18,17 @@ public class Main : MonoBehaviour {
 		bestScore = PlayerPrefs.GetInt ("BestScore", 0);
 	}
 
+	// Revisar
+	void OnEnable(){}
+	void OnDisable(){}
+
+
 	void Start () {}
 
-	void Update () {}
+	void Update () {
+	}
 
-	void Prueba(){
+	void Lose(){
 		print ("Escuche");
 	}
 
