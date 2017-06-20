@@ -10,7 +10,7 @@ public class UImanager : MonoBehaviour {
 	GameObject nave;
 	NaveScript naveScript;
 	public int naveFuel;
-
+	public float naveVerticalVel;
 
 
 
@@ -35,7 +35,7 @@ public class UImanager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		naveFuel = naveScript.GetFuel ();
-
+		naveVerticalVel = naveScript.GetVerticalVelocity ();
 
 	}
 }

@@ -17,10 +17,12 @@ public class NaveScript : MonoBehaviour {
 	private int fuel = 1000;
 	private bool fuelEmpty = false;
 
+	private float verticalVel = 0;
+
 	RaycastHit2D hit;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         rb = GetComponent<Rigidbody2D>();
 		rb.gravityScale = 0.00001f;
 		rb.AddForce(Vector2.right * 20);
@@ -37,21 +39,30 @@ public class NaveScript : MonoBehaviour {
 
 		if (Input.GetKey (KeyCode.LeftArrow) && fuel > -1) {
 			transform.eulerAngles += Vector3.forward;
-		} 
-		else if (Input.GetKey (KeyCode.RightArrow) && fuel > -1) {
+		} else if (Input.GetKey (KeyCode.RightArrow) && fuel > -1) {
 			transform.eulerAngles += Vector3.back;
 		}
 
 
-		if (gravityEstable || timer > 5.0f){
+		if (gravityEstable || timer > 5.0f) {
 			rb.gravityScale = 0.002f;
 		}
 
-		if (fuel <= 0){fuelEmpty = true;}
+		if (fuel <= 0) {
+			fuelEmpty = true;
+		}
 
-		// Prueba
-		hit = Physics2D.Raycast(transform.position, Vector2.down);
-		print("Distance : "+ hit.distance + " Hip Point: " + hit.point);
+		// --- Prueba RayCast ---
+		//hit = Physics2D.Raycast (transform.position, Vector2.down, Mathf.Infinity);
+		//print("Distance : "+ hit.distance + " Hip Point: " + hit.point);
+		//float distance = Mathf.Abs(hit.point.y - transform.position.y);
+		//pr	int (distance);
+
+
+		// --- Prueba Vertical Velocity ---
+		verticalVel = rb.velocity.y * -100;
+		if (verticalVel < 0)
+			verticalVel = verticalVel * -1;
 	}
 
 
@@ -77,8 +88,8 @@ public class NaveScript : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll){
 
-		print(transform.rotation.eulerAngles.z);
-		print (transform.rotation.z);
+		//print(transform.rotation.eulerAngles.z);
+		//print (transform.rotation.z);
 
 		if (coll.relativeVelocity.magnitude > 0.6f)
 			print ("Perdiste");//NaveDestroid.Invoke ();
@@ -92,5 +103,6 @@ public class NaveScript : MonoBehaviour {
 
 	public int GetFuel(){return fuel;}
 
+	public float GetVerticalVelocity(){return verticalVel;}
 
 }
