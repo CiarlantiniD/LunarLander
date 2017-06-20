@@ -12,10 +12,12 @@ public class NaveScript : MonoBehaviour {
 
 	float timer = 0f;
 	bool gravityEstable = false;
-	bool alive = true;
+
 
 	private int fuel = 1000;
 	private bool fuelEmpty = false;
+
+	RaycastHit2D hit;
 
 	// Use this for initialization
 	void Start () {
@@ -46,6 +48,10 @@ public class NaveScript : MonoBehaviour {
 		}
 
 		if (fuel <= 0){fuelEmpty = true;}
+
+		// Prueba
+		hit = Physics2D.Raycast(transform.position, Vector2.down);
+		print("Distance : "+ hit.distance + " Hip Point: " + hit.point);
 	}
 
 
@@ -61,8 +67,8 @@ public class NaveScript : MonoBehaviour {
 			fuel -= 1;
 		}
 
-		if (!fuelEmpty)
-			rb.AddForce (Vector2.down * 0.2f);
+		if (fuelEmpty)
+			rb.AddForce (Vector2.down * 0.1f);
     }
 
 
@@ -71,16 +77,18 @@ public class NaveScript : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll){
 
-        //rb.velocity.magnitude > 0.001f
-        //print(coll.relativeVelocity.magnitude);
+		print(transform.rotation.eulerAngles.z);
+		print (transform.rotation.z);
 
-
-
-		if (coll.relativeVelocity.magnitude > 0.6f && transform.rotation.eulerAngles.z < 355.0f && transform.rotation.eulerAngles.z > 5.0f)
-			NaveDestroid.Invoke ();
+		if (coll.relativeVelocity.magnitude > 0.6f)
+			print ("Perdiste");//NaveDestroid.Invoke ();
+		else if (transform.rotation.z > 0.25f || transform.rotation.z < -0.25f)
+			print ("Perdiste");
 		else
-			print ("Ganaste");
+			print ("Ganaste"); // Puede medir la complejidad del aterrizaje y dar ma so manos puntos por eso.
 	}
+
+	void OnBecameInvisible(){print ("Perdiste");} // agregar evento de derrota
 
 	public int GetFuel(){return fuel;}
 
