@@ -16,7 +16,7 @@ public class NaveScript : MonoBehaviour {
 	bool gravityEstable = false;
 
 
-	private int fuel = 1000;
+	private int fuel;
 	private bool fuelEmpty = false;
 
 	private float verticalVel = 0;
@@ -25,11 +25,12 @@ public class NaveScript : MonoBehaviour {
 
 	RaycastHit2D hit;
 
+	Vector2 startPosition;
 
 	void Awake () {
         rb = GetComponent<Rigidbody2D>();
+		startPosition = new Vector2(-9,8);
 		Reset ();
-
 		//NaveDestroid.AddListener ("Prueba");
 	}
 
@@ -38,8 +39,10 @@ public class NaveScript : MonoBehaviour {
 	{
 		rb.AddForce(Vector2.right * 20);
 		transform.eulerAngles = new Vector3 (0,0,-15);
+		fuel = 1000;
 		rb.gravityScale = 0.00001f;
 		timer = 0f;
+		transform.position = startPosition;
 		alive = true;
 	}
 
@@ -139,5 +142,9 @@ public class NaveScript : MonoBehaviour {
 	public int GetFuel(){return fuel;}
 
 	public float GetVerticalVelocity(){return verticalVel;}
+
+	public bool GetStatusAlive(){return alive;}
+
+	public void SetReset(){Reset ();}
 
 }

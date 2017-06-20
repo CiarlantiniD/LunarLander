@@ -5,34 +5,62 @@ using UnityEngine.Events;
 
 public class Main : MonoBehaviour {
 
+	public static Main instance = null;
 
+	NaveScript naveScript;// cambiar
+	//UImanager uiManager;// cambiar
 
-	int lifes;
+	private int lifes;
 
 	private int score;
 	private int bestScore;
 
+	float timer = 0;
+
 	void Awake () {
-		lifes = PlayerPrefs.GetInt("Lifes",3);
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy (gameObject);
+
+		naveScript = GameObject.Find ("Ship").GetComponent<NaveScript>(); // cambiar
+		//uiManager = GameObject.Find ("CanvasUI").GetComponent<UImanager>(); // cambiar
+
+		PlayerPrefs.SetInt ("Lifes", 15);
+		PlayerPrefs.SetInt ("Score", 0);
+
+		lifes = PlayerPrefs.GetInt("Lifes",15);
 		score = PlayerPrefs.GetInt ("Score", 0);
 		bestScore = PlayerPrefs.GetInt ("BestScore", 0);
 	}
 
 	// Revisar
-	void OnEnable(){}
-	void OnDisable(){}
-
-
-	void Start () {}
+	//void OnEnable(){}
+	//void OnDisable(){}
+	//void Start () {}
 
 	void Update () {
+
+
+
+
+
+
+
+
+
+		if (!naveScript.GetStatusAlive()){
+			timer += Time.deltaTime;
+
+			if (timer > 4.0f) {
+				LoseStage ();
+				naveScript.SetReset ();
+				timer = 0;
+			}
+				
+		}
 	}
-
-	void Lose(){
-		print ("Escuche");
-	}
-
-
+		
 
 	void WinStage(){
 		PlayerPrefs.SetInt ("Lifes", lifes);
@@ -45,8 +73,6 @@ public class Main : MonoBehaviour {
 	}
 
 	void WinGame(){
-
-
 		if (score > bestScore) // Se puede mover a la scena Ganadora
 			PlayerPrefs.SetInt ("BestScore", score);
 	}
