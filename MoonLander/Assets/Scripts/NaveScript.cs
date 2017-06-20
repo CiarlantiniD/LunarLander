@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NaveScript : MonoBehaviour {
+
+	UnityEvent NaveDestroid;
+	UnityEvent NaveLander;
 
     Rigidbody2D rb;
 
@@ -10,8 +14,8 @@ public class NaveScript : MonoBehaviour {
 	bool gravityEstable = false;
 	bool alive = true;
 
-
 	private int fuel = 1000;
+	private bool fuelEmpty = false;
 
 	// Use this for initialization
 	void Start () {
@@ -19,8 +23,11 @@ public class NaveScript : MonoBehaviour {
 		rb.gravityScale = 0.00001f;
 		rb.AddForce(Vector2.right * 20);
 		transform.eulerAngles = new Vector3 (0,0,-15);
+
+		//NaveDestroid.AddListener ("Prueba");
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
 
@@ -38,12 +45,12 @@ public class NaveScript : MonoBehaviour {
 			rb.gravityScale = 0.002f;
 		}
 
-		if (fuel <= 0){alive = false;}
-
-		// Condicion de derrota
-		if (!alive){print("Perdiste");}
-
+		if (fuel <= 0){fuelEmpty = true;}
 	}
+
+
+
+
 
     void FixedUpdate()
     {
@@ -53,22 +60,26 @@ public class NaveScript : MonoBehaviour {
 			gravityEstable = true;
 			fuel -= 1;
 		}
+
+		if (!fuelEmpty)
+			rb.AddForce (Vector2.down * 0.2f);
     }
+
+
+
 
 
 	void OnCollisionEnter2D(Collision2D coll){
 
         //rb.velocity.magnitude > 0.001f
-        print(coll.relativeVelocity.magnitude);
+        //print(coll.relativeVelocity.magnitude);
 
 
 
-		if (coll.relativeVelocity.magnitude > 0.6f && transform.rotation.eulerAngles.z < 355.0f && transform.rotation.eulerAngles.z > 5.0f) {
-			alive = false;
-		} else {
-			// Condicion de Victoria
+		if (coll.relativeVelocity.magnitude > 0.6f && transform.rotation.eulerAngles.z < 355.0f && transform.rotation.eulerAngles.z > 5.0f)
+			NaveDestroid.Invoke ();
+		else
 			print ("Ganaste");
-		}
 	}
 
 	public int GetFuel(){return fuel;}
