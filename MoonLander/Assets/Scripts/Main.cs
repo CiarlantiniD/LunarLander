@@ -54,13 +54,16 @@ public class Main : MonoBehaviour {
 
 		if (!naveScript.GetStatusAlive()){
 			timer += Time.deltaTime;
-			uiLose = true;
+
+			if (timer > 1f)
+				uiLose = true;
 
 			if (timer > 4.0f) {
 				LoseStage ();
 				naveScript.SetReset ();
 				timer = 0;
 				uiLose = false;
+				score += 100; // BOORAR, ES PRUEBA
 			}
 				
 		}

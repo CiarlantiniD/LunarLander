@@ -61,6 +61,8 @@ public class UImanager : MonoBehaviour {
 			loseText.gameObject.SetActive (true);
 		else
 			loseText.gameObject.SetActive (false);
+
+
 	}
 }
  
