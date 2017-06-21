@@ -15,6 +15,9 @@ public class UImanager : MonoBehaviour {
 	public int naveFuel;
 	public float naveVerticalVel;
 
+	Transform winText;
+	Transform loseText;
+
 	public int lifes;
 	public int score;
 
@@ -29,6 +32,12 @@ public class UImanager : MonoBehaviour {
 
 		main = GameObject.Find ("Main");
 		mainScript = main.GetComponent<Main> ();
+
+		winText = transform.FindChild ("WinText");
+		loseText = transform.FindChild ("LoseText");
+		winText.gameObject.SetActive (false);
+		loseText.gameObject.SetActive (false);
+
 	}
 
 
@@ -42,6 +51,16 @@ public class UImanager : MonoBehaviour {
 
 		lifes = mainScript.GetLifes ();
 		score = mainScript.GetScore ();
+
+		if (mainScript.GetUIWin ())
+			winText.gameObject.SetActive (true);
+		else
+			winText.gameObject.SetActive (false);
+
+		if (mainScript.GetUILose ())
+			loseText.gameObject.SetActive (true);
+		else
+			loseText.gameObject.SetActive (false);
 	}
 }
  

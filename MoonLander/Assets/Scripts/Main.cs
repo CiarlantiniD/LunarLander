@@ -15,6 +15,9 @@ public class Main : MonoBehaviour {
 	private int score;
 	private int bestScore;
 
+	bool uiWin = false;
+	bool uiLose = false;
+
 	float timer = 0;
 
 	void Awake () {
@@ -51,11 +54,13 @@ public class Main : MonoBehaviour {
 
 		if (!naveScript.GetStatusAlive()){
 			timer += Time.deltaTime;
+			uiLose = true;
 
 			if (timer > 4.0f) {
 				LoseStage ();
 				naveScript.SetReset ();
 				timer = 0;
+				uiLose = false;
 			}
 				
 		}
@@ -85,4 +90,8 @@ public class Main : MonoBehaviour {
 	public int GetLifes(){return lifes;}
 
 	public int GetScore(){return score;}
+
+	public bool GetUIWin(){return uiWin;}
+
+	public bool GetUILose(){return uiLose;}
 }
