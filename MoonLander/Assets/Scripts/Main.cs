@@ -74,8 +74,6 @@ public class Main : MonoBehaviour {
 
 			if (timer > 4.0f) {
 				LoseStage ();
-				naveScript.SetReset ();
-				timer = 0;
 				uiLose = false;
 			}
 		} else if (!naveScript.GetStatusAlive () && lander) {
@@ -85,11 +83,11 @@ public class Main : MonoBehaviour {
 				uiWin = true;
 			
 			if (timer > 4.0f) {
-				//LoseStage ();
-				naveScript.SetReset ();
-				timer = 0;
-				uiWin = false;
-				score += 500; // Usar algoritmo para calcular un mejor score
+				naveScript.SetReset (); // NO VA
+				timer = 0; // NO VA
+				uiWin = false; // NO VA
+				WinStage ();
+
 			}
 		
 		}
@@ -112,11 +110,16 @@ public class Main : MonoBehaviour {
 	void LoseStage(){
 		lifes -= 1;
 		PlayerPrefs.SetInt ("Lifes", lifes);
+		naveScript.SetReset ();
+		timer = 0;
 	}
 
 	void WinGame(){
 		if (score > bestScore) // Se puede mover a la scena Ganadora
 			PlayerPrefs.SetInt ("BestScore", score);
+
+		score += 500; // Usar algoritmo para calcular un mejor score
+		// + Cambio de Escena
 	}
 
 	void LoseGame(){
