@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TimeUIScript : MonoBehaviour {
 
+	UImanager parentScript;
+
 	Text timerTextUI;
 
 	float timer;
@@ -14,12 +16,13 @@ public class TimeUIScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		parentScript = transform.GetComponentInParent<UImanager> ();
 		timerTextUI = GetComponent<Text> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		timer = Time.time;
+		timer = parentScript.timeGame;
 		seg = (int)timer % 60;
 		min = (int)timer / 60;
 

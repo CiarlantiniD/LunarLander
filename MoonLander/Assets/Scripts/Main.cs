@@ -7,13 +7,12 @@ public class Main : MonoBehaviour {
 
 	public static Main instance = null;
 
-	NaveScript naveScript;// cambiar
-	//UImanager uiManager;// cambiar
 
-	// Ship Data
+
+	// Nave Data
+	private NaveScript naveScript;
 	int naveFuel;
 	float naveVerticalVel;
-
 
 	// Lifes
 	private int lifes;
@@ -32,6 +31,7 @@ public class Main : MonoBehaviour {
 
 	// Timer
 	float timer = 0;
+	float timeGame = 0;
 
 	void Awake () {
 		if (instance == null)
@@ -39,8 +39,7 @@ public class Main : MonoBehaviour {
 		else if (instance != this)
 			Destroy (gameObject);
 
-		naveScript = GameObject.Find ("Ship").GetComponent<NaveScript>(); // cambiar
-		//uiManager = GameObject.Find ("CanvasUI").GetComponent<UImanager>(); // cambiar
+		naveScript = GameObject.Find ("Ship").GetComponent<NaveScript> ();
 
 		PlayerPrefs.SetInt ("Lifes", 15);
 		PlayerPrefs.SetInt ("Score", 0);
@@ -56,6 +55,9 @@ public class Main : MonoBehaviour {
 	//void Start () {}
 
 	void Update () {
+
+		if (!pauseStatus)
+			timeGame += Time.deltaTime;
 
 		naveFuel = naveScript.GetFuel ();
 		naveVerticalVel = naveScript.GetVerticalVelocity ();
@@ -87,11 +89,9 @@ public class Main : MonoBehaviour {
 
 			if (!pauseStatus) {
 				uiPause = false;
-				// time pause
 			}
 			else
 				uiPause = true;
-				// time pause
 		}
 	}
 		
@@ -117,12 +117,15 @@ public class Main : MonoBehaviour {
 	int scoreCalculate(){/* Tiempo * Combustible * Zona*/ return 0;}
 
 	public int GetLifes(){return lifes;}
-
 	public int GetScore(){return score;}
 
 	public bool GetUIWin(){return uiWin;}
-
 	public bool GetUILose(){return uiLose;}
-
 	public bool GetUIPause(){return uiPause;}
+
+	 
+	public int GetNaveFuel(){return naveFuel;}
+	public float GetNaveVerticalVel(){return naveVerticalVel;}
+
+	public float GetTime(){return timeGame;}
 }

@@ -1009,7 +1009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &934755958
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2513,6 +2513,7 @@ MonoBehaviour:
   naveVerticalVel: 0
   lifes: 0
   score: 0
+  timeGame: 0
 --- !u!1 &1601926120
 GameObject:
   m_ObjectHideFlags: 0

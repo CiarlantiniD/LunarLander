@@ -7,11 +7,8 @@ public class UImanager : MonoBehaviour {
 
 	public static UImanager instance = null; 
 
-	GameObject main;
-	Main mainScript;
+	private Main mainScript;
 
-	GameObject nave;
-	NaveScript naveScript;
 	public int naveFuel;
 	public float naveVerticalVel;
 
@@ -22,17 +19,15 @@ public class UImanager : MonoBehaviour {
 	public int lifes;
 	public int score;
 
+	public float timeGame;
+
 	void Awake(){
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
 			Destroy (gameObject);
-
-		nave = GameObject.Find ("Ship");
-		naveScript = nave.GetComponent<NaveScript>(); // esto esta mal
-
-		main = GameObject.Find ("Main");
-		mainScript = main.GetComponent<Main> ();
+		
+		mainScript = GameObject.Find ("Main").GetComponent<Main> ();
 
 		winText = transform.FindChild ("WinText");
 		loseText = transform.FindChild ("LoseText");
@@ -49,15 +44,17 @@ public class UImanager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		naveFuel = naveScript.GetFuel ();
-		naveVerticalVel = naveScript.GetVerticalVelocity ();
 
+		// --- UI PLayer ---
 		lifes = mainScript.GetLifes ();
 		score = mainScript.GetScore ();
 
+		// --- UI Nave ---
+		naveFuel = mainScript.GetNaveFuel ();
+		naveVerticalVel = mainScript.GetNaveVerticalVel ();
 
-
-
+		// --- UI Time ---
+		timeGame = mainScript.GetTime();
 
 		// --- UI Mesenger ---
 		if (mainScript.GetUIWin ())
