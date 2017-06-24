@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour {
-
-	// Save Configuration
-	private int haveSave = 1; // CONFIGURATION
-	private int intTranforText = 1;
-	private int optionSlectMaxArgument = 2; // 1 Yes / 2 No
+public class OptionsConfScript : MonoBehaviour {
 
 	private int optionSlect = 0;
 	private int maxOption = 3;
@@ -26,12 +21,11 @@ public class MainMenu : MonoBehaviour {
 		optionsText[2] =transform.GetChild(2).GetComponent<Text>();
 		optionsText[3] =transform.GetChild(3).GetComponent<Text>();
 
-		HaveSave();
 		TranforText ();
 	}
 
 	void TranforText(){
-		for (int i = intTranforText; i <= maxOption; i++) {
+		for (int i = 0; i <= maxOption; i++) {
 			if (i == optionSlect)
 				optionsText [i].color = selectColor;
 			else
@@ -41,8 +35,8 @@ public class MainMenu : MonoBehaviour {
 
 
 	void Update () {
-		 
-		if (Input.GetKeyDown (KeyCode.UpArrow) && optionSlect >= optionSlectMaxArgument) {
+
+		if (Input.GetKeyDown (KeyCode.UpArrow) && optionSlect >= 1) {
 			optionSlect -= 1;
 			TranforText ();
 		} else if (Input.GetKeyDown (KeyCode.DownArrow) && optionSlect < maxOption) {
@@ -72,23 +66,4 @@ public class MainMenu : MonoBehaviour {
 			}
 		}
 	}
-
-
-	void HaveSave(){
-		if (haveSave == 1) {
-			print ("Tengo Save");
-			intTranforText = 0;
-			optionSlectMaxArgument = 1;
-			optionSlect = 0;
-		}
-		else {
-			print ("No tengo Save");
-			intTranforText = 1;
-			optionSlectMaxArgument = 2;
-			optionSlect = 1;
-			optionsText [0].color=Color.clear;
-		}
-
-	}
-
 }
