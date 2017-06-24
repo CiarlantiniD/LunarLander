@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class OptionsConfScript : MonoBehaviour {
 
+	MainManager mainManager;
 
 	// Valores del Menu
 	private int setVolumen = 0;
@@ -18,6 +19,8 @@ public class OptionsConfScript : MonoBehaviour {
 	Text[] optionsText;
 
 	void Awake () {
+		mainManager = transform.GetComponentInParent<MainManager> ();
+
 		optionsText = new Text[4];
 
 		optionsText[0] =transform.GetChild(0).GetComponent<Text>();
@@ -61,9 +64,11 @@ public class OptionsConfScript : MonoBehaviour {
 				break;
 			case 2:
 				print ("Volver a atras");
+				mainManager.ChangeMenu (1);
 				break;
 			default:
 				print ("Volver a atras");
+				mainManager.ChangeMenu (1);
 				break;
 			}
 		}

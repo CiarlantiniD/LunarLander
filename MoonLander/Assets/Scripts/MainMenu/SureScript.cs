@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SureScript : MonoBehaviour {
 
+	MainManager mainManager;
 
 	private int optionSlect = 1;
 	private int maxOption = 2;
@@ -15,6 +16,8 @@ public class SureScript : MonoBehaviour {
 	Text[] optionsText;
 
 	void Awake () {
+		mainManager = transform.GetComponentInParent<MainManager> ();
+
 		optionsText = new Text[3];
 
 		optionsText[0] =transform.GetChild(0).GetComponent<Text>();
@@ -50,12 +53,14 @@ public class SureScript : MonoBehaviour {
 			switch (optionSlect) {
 			case 0:
 				print ("NO estoy seguro");
+				mainManager.ChangeMenu (1);
 				break;
 			case 1:
 				print ("Quitar Juego");
 				break;
 			default:
 				print ("NO estoy seguro");
+				mainManager.ChangeMenu (1);
 				break;
 			}
 		}

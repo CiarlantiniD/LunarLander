@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
+	MainManager mainManager;
+
 	// Save Configuration
-	private int haveSave = 1; // CONFIGURATION
+	private int haveSave = 1; // CONFIGURATION REVISAR
 	private int intTranforText = 1;
 	private int optionSlectMaxArgument = 2; // 1 Yes / 2 No
 
@@ -19,6 +21,8 @@ public class MainMenu : MonoBehaviour {
 	Text[] optionsText;
 
 	void Awake () {
+		mainManager = transform.GetComponentInParent<MainManager> ();
+
 		optionsText = new Text[4];
 
 		optionsText[0] =transform.GetChild(0).GetComponent<Text>();
@@ -62,6 +66,7 @@ public class MainMenu : MonoBehaviour {
 				break;
 			case 2:
 				print ("Opciones Juego");
+				mainManager.ChangeMenu (2);
 				break;
 			case 3:
 				print ("Salir Juego");
