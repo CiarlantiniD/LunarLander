@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour {
 
-	Transform mainMenu;
-	Transform optionsConf;
-	Transform exitSure;
+	//Transform mainMenu;
+	//Transform optionsConf;
+	//Transform exitSure;
 
 
 	void Awake () {
-		mainMenu = transform.FindChild ("MainMenu");
-		optionsConf = transform.FindChild ("OptionsConf");
-		exitSure =  transform.FindChild ("ExitSure");
+		//mainMenu = transform.FindChild ("MainMenu");
+	//	optionsConf = transform.FindChild ("OptionsConf");
+	//	exitSure =  transform.FindChild ("ExitSure");
 
-		optionsConf.gameObject.SetActive (false);
-		exitSure.gameObject.SetActive (false);
+		//optionsConf.gameObject.SetActive (false);
+		//exitSure.gameObject.SetActive (false);
 	}
 	
 
