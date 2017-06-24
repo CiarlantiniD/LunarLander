@@ -13,6 +13,7 @@ public class Main : MonoBehaviour {
 	private NaveScript naveScript;
 	int naveFuel;
 	float naveVerticalVel;
+	bool lander;
 
 	// Lifes
 	private int lifes;
@@ -33,6 +34,7 @@ public class Main : MonoBehaviour {
 	float timer = 0;
 	float timeGame = 0;
 
+
 	void Awake () {
 		if (instance == null)
 			instance = this;
@@ -49,26 +51,22 @@ public class Main : MonoBehaviour {
 		bestScore = PlayerPrefs.GetInt ("BestScore", 0);
 	}
 
-	// Revisar
-	//void OnEnable(){}
-	//void OnDisable(){}
-	//void Start () {}
 
 	void Update () {
 
-		if (!pauseStatus)
+		if (!pauseStatus && naveScript.GetStatusAlive ())
 			timeGame += Time.deltaTime;
 
 		naveFuel = naveScript.GetFuel ();
 		naveVerticalVel = naveScript.GetVerticalVelocity ();
+		lander = naveScript.Getlander ();
 
 
 
 
 
 
-
-		if (!naveScript.GetStatusAlive()){
+		if (!naveScript.GetStatusAlive () && !lander) {
 			timer += Time.deltaTime;
 
 			if (timer > 1f)
@@ -79,19 +77,29 @@ public class Main : MonoBehaviour {
 				naveScript.SetReset ();
 				timer = 0;
 				uiLose = false;
-				score += 100; // BOORAR, ES PRUEBA
 			}
-				
+		} else if (!naveScript.GetStatusAlive () && lander) {
+			timer += Time.deltaTime;
+
+			if (timer > 1f)
+				uiWin = true;
+			
+			if (timer > 4.0f) {
+				//LoseStage ();
+				naveScript.SetReset ();
+				timer = 0;
+				uiWin = false;
+				score += 500; // Usar algoritmo para calcular un mejor score
+			}
+		
 		}
 
+
+
+		// --- Pause ---
 		if (Input.GetKeyDown(KeyCode.Escape)){
 			pauseStatus = naveScript.PauseStatus ();
-
-			if (!pauseStatus) {
-				uiPause = false;
-			}
-			else
-				uiPause = true;
+			uiPause = pauseStatus;
 		}
 	}
 		

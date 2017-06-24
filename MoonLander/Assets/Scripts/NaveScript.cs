@@ -24,6 +24,7 @@ public class NaveScript : MonoBehaviour {
 
 	// Estado de Vivo
 	private bool alive;
+	private bool lander;
 
 	RaycastHit2D hit;
 
@@ -39,7 +40,6 @@ public class NaveScript : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
 		startPosition = new Vector2(-9,8);
 		Reset ();
-		//NaveDestroid.AddListener ("Prueba");
 	}
 
 
@@ -55,6 +55,7 @@ public class NaveScript : MonoBehaviour {
 		transform.position = startPosition;
 		pause = false;
 		alive = true;
+		lander = false;
 	}
 
 	void Update () {
@@ -134,15 +135,14 @@ public class NaveScript : MonoBehaviour {
 		StopMove ();
 		verticalVel = 0f;
 		print ("Perdiste");
-		//naveDestroid.Invoke ();
 	}
 
 	void Lander(){
 		alive = false;
 		StopMove ();
 		verticalVel = 0f;
+		lander = true;
 		print ("Ganaste");
-		//naveLander.Invoke ();
 	}
 
 	void StopMove(){
@@ -167,12 +167,12 @@ public class NaveScript : MonoBehaviour {
 		return pause;
 	}
 
-	public int GetFuel(){return fuel;}
+	public void SetReset(){Reset ();}
 
+	public int GetFuel(){return fuel;}
 	public float GetVerticalVelocity(){return verticalVel;}
 
 	public bool GetStatusAlive(){return alive;}
-
-	public void SetReset(){Reset ();}
+	public bool Getlander(){return lander;}
 
 }
