@@ -15,8 +15,9 @@ public class Main : MonoBehaviour {
 	private int score;
 	private int bestScore;
 
-	bool uiWin = false;
-	bool uiLose = false;
+	private bool uiWin = false;
+	private bool uiLose = false;
+	private bool uiPause = false;
 
 	float timer = 0;
 
@@ -67,6 +68,12 @@ public class Main : MonoBehaviour {
 			}
 				
 		}
+
+		if (Input.GetKeyDown(KeyCode.Escape)){
+			naveScript.PauseStatus();
+			// time pause
+			// ui pause
+		}
 	}
 		
 
@@ -97,4 +104,6 @@ public class Main : MonoBehaviour {
 	public bool GetUIWin(){return uiWin;}
 
 	public bool GetUILose(){return uiLose;}
+
+	public bool GetUIPause(){return uiPause;}
 }

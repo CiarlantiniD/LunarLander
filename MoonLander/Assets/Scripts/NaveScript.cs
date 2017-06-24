@@ -15,17 +15,25 @@ public class NaveScript : MonoBehaviour {
 	float timer = 0f;
 	bool gravityEstable = false;
 
-
+	// Fuel
 	private int fuel;
-	private bool fuelEmpty = false;
+	private bool fuelEmpty;
 
-	private float verticalVel = 0;
+	// Velocidad Vertical
+	private float verticalVel;
 
-	private bool alive = true;
+	// Estado de Vivo
+	private bool alive;
 
 	RaycastHit2D hit;
 
 	Vector2 startPosition;
+
+	// Pause
+	bool pause;
+	Vector3 velocitySave;
+	float angularVelocitySave;
+
 
 	void Awake () {
         rb = GetComponent<Rigidbody2D>();
@@ -39,15 +47,18 @@ public class NaveScript : MonoBehaviour {
 	{
 		rb.AddForce(Vector2.right * 20);
 		transform.eulerAngles = new Vector3 (0,0,-15);
+		verticalVel = 0;
 		fuel = 1000;
+		fuelEmpty = false;
 		rb.gravityScale = 0.00001f;
 		timer = 0f;
 		transform.position = startPosition;
+		pause = false;
 		alive = true;
 	}
 
 	void Update () {
-		if (alive)
+		if (alive && !pause)
 		{
 			timer += Time.deltaTime;
 
@@ -86,7 +97,7 @@ public class NaveScript : MonoBehaviour {
 
     void FixedUpdate()
     {
-		if (Input.GetKey(KeyCode.Space) && fuel > -1 && alive == true)
+		if (Input.GetKey(KeyCode.Space) && fuel > -1 && alive && !pause)
 		{
 			rb.AddRelativeForce(Vector2.up);
 			gravityEstable = true;
@@ -118,7 +129,7 @@ public class NaveScript : MonoBehaviour {
 
 	void Destroid(){
 		// + Animacion de Destruccion
-		// + Hombre saliendo al espacio
+		// + Hombre saliendo al espacio (plus)
 		alive = false;
 		StopMove ();
 		verticalVel = 0f;
@@ -137,6 +148,22 @@ public class NaveScript : MonoBehaviour {
 	void StopMove(){
 		rb.velocity = Vector3.zero;
 		rb.angularVelocity = 0f;
+	}
+
+	public void PauseStatus(){
+		if (!pause) {
+			pause = true;
+			rb.gravityScale = 0f;
+			velocitySave = rb.velocity;
+			angularVelocitySave = rb.angularVelocity;
+			StopMove ();
+
+		} else {
+			pause = false;
+			rb.gravityScale = 0.002f;
+			rb.velocity = velocitySave;
+			rb.angularVelocity = angularVelocitySave;
+		}
 	}
 
 	public int GetFuel(){return fuel;}
