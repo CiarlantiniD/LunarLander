@@ -150,7 +150,7 @@ public class NaveScript : MonoBehaviour {
 		rb.angularVelocity = 0f;
 	}
 
-	public void PauseStatus(){
+	public bool PauseStatus(){
 		if (!pause) {
 			pause = true;
 			rb.gravityScale = 0f;
@@ -164,6 +164,7 @@ public class NaveScript : MonoBehaviour {
 			rb.velocity = velocitySave;
 			rb.angularVelocity = angularVelocitySave;
 		}
+		return pause;
 	}
 
 	public int GetFuel(){return fuel;}

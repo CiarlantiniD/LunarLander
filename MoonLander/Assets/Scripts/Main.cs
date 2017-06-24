@@ -10,15 +10,27 @@ public class Main : MonoBehaviour {
 	NaveScript naveScript;// cambiar
 	//UImanager uiManager;// cambiar
 
+	// Ship Data
+	int naveFuel;
+	float naveVerticalVel;
+
+
+	// Lifes
 	private int lifes;
 
+	// Score
 	private int score;
 	private int bestScore;
 
+	// Text
 	private bool uiWin = false;
 	private bool uiLose = false;
 	private bool uiPause = false;
 
+	// Pause
+	private bool pauseStatus;
+
+	// Timer
 	float timer = 0;
 
 	void Awake () {
@@ -45,7 +57,8 @@ public class Main : MonoBehaviour {
 
 	void Update () {
 
-
+		naveFuel = naveScript.GetFuel ();
+		naveVerticalVel = naveScript.GetVerticalVelocity ();
 
 
 
@@ -70,9 +83,15 @@ public class Main : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.Escape)){
-			naveScript.PauseStatus();
-			// time pause
-			// ui pause
+			pauseStatus = naveScript.PauseStatus ();
+
+			if (!pauseStatus) {
+				uiPause = false;
+				// time pause
+			}
+			else
+				uiPause = true;
+				// time pause
 		}
 	}
 		

@@ -17,6 +17,7 @@ public class UImanager : MonoBehaviour {
 
 	Transform winText;
 	Transform loseText;
+	Transform pauseText;
 
 	public int lifes;
 	public int score;
@@ -28,15 +29,17 @@ public class UImanager : MonoBehaviour {
 			Destroy (gameObject);
 
 		nave = GameObject.Find ("Ship");
-		naveScript = nave.GetComponent<NaveScript>();
+		naveScript = nave.GetComponent<NaveScript>(); // esto esta mal
 
 		main = GameObject.Find ("Main");
 		mainScript = main.GetComponent<Main> ();
 
 		winText = transform.FindChild ("WinText");
 		loseText = transform.FindChild ("LoseText");
+		pauseText = transform.FindChild ("PauseText");
 		winText.gameObject.SetActive (false);
 		loseText.gameObject.SetActive (false);
+		pauseText.gameObject.SetActive (false);
 
 	}
 
@@ -52,6 +55,11 @@ public class UImanager : MonoBehaviour {
 		lifes = mainScript.GetLifes ();
 		score = mainScript.GetScore ();
 
+
+
+
+
+		// --- UI Mesenger ---
 		if (mainScript.GetUIWin ())
 			winText.gameObject.SetActive (true);
 		else
@@ -61,6 +69,11 @@ public class UImanager : MonoBehaviour {
 			loseText.gameObject.SetActive (true);
 		else
 			loseText.gameObject.SetActive (false);
+
+		if (mainScript.GetUIPause ())
+			pauseText.gameObject.SetActive (true);
+		else
+			pauseText.gameObject.SetActive (false);
 
 
 	}
