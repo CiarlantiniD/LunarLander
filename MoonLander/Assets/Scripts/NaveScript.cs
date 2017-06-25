@@ -56,7 +56,7 @@ public class NaveScript : MonoBehaviour {
 		rb.AddForce(Vector2.right * 20);
 		transform.eulerAngles = new Vector3 (0,0,-15);
 		verticalVel = 0;
-		fuel = 1000;
+		fuel = PlayerPrefs.GetInt ("Fuel", 1000);
 		fuelEmpty = false;
 		rb.gravityScale = 0.00001f;
 		timer = 0f;
@@ -222,5 +222,7 @@ public class NaveScript : MonoBehaviour {
 
 	public bool GetStatusAlive(){return alive;}
 	public bool Getlander(){return lander;}
+
+	public int GetBaseMulti(){return multiScore;}
 
 }

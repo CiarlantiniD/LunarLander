@@ -53,7 +53,7 @@ public class Main : MonoBehaviour {
 		PlayerPrefs.SetInt ("Lifes", 3);
 		PlayerPrefs.SetInt ("Score", 0);
 		PlayerPrefs.SetInt ("Level", 1);
-
+		PlayerPrefs.SetInt ("Fuel", 1000);
 
 
 		lifes = PlayerPrefs.GetInt("Lifes",3);
@@ -96,11 +96,8 @@ public class Main : MonoBehaviour {
 				uiWin = true;
 			
 			if (timer > 4.0f) {
-				naveScript.SetReset (); // NO VA
-				timer = 0;
-				uiWin = false; // NO VA
 				WinStage ();
-
+				uiWin = false;
 			}
 		
 		}
@@ -119,6 +116,7 @@ public class Main : MonoBehaviour {
 		scoreCalculate ();
 		PlayerPrefs.SetInt ("Lifes", lifes);
 		PlayerPrefs.SetInt ("Score", score);
+		PlayerPrefs.SetInt ("Fuel", naveFuel);
 		timeGame = 0;
 
 		actualLevel += 1;
@@ -126,12 +124,16 @@ public class Main : MonoBehaviour {
 			WinGame ();
 	
 		PlayerPrefs.SetInt ("Level", actualLevel);
+
 		levelManager.ChangeLevel (actualLevel);
+		naveScript.SetReset ();
+		timer = 0;
 	}
 
 	void LoseStage(){
 		lifes -= 1;
 		PlayerPrefs.SetInt ("Lifes", lifes);
+		PlayerPrefs.SetInt ("Fuel", 1000);
 		naveScript.SetReset ();
 		timer = 0;
 
@@ -178,6 +180,7 @@ public class Main : MonoBehaviour {
 	void scoreCalculate(){
 		tempScore = ((int)timeGame * 1000) - (naveFuel * 10);
 		tempScore = 150000 - tempScore;
+		tempScore = tempScore *  naveScript.GetBaseMulti();
 		score += tempScore;
 	}
 
