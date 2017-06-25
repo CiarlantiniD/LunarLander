@@ -7,7 +7,9 @@ public class Main : MonoBehaviour {
 
 	public static Main instance = null;
 
-
+	// Levels
+	private LevelManager levelManager;
+	int actualLevel;
 
 	// Nave Data
 	private NaveScript naveScript;
@@ -42,13 +44,22 @@ public class Main : MonoBehaviour {
 			Destroy (gameObject);
 
 		naveScript = GameObject.Find ("Ship").GetComponent<NaveScript> ();
+		levelManager = GameObject.Find ("LevelsManager").GetComponent<LevelManager> ();
 
+
+		// --- Esto es en el caso de un New Game
 		PlayerPrefs.SetInt ("Lifes", 15);
 		PlayerPrefs.SetInt ("Score", 0);
+		PlayerPrefs.SetInt ("Level", 1);
+
+
 
 		lifes = PlayerPrefs.GetInt("Lifes",15);
 		score = PlayerPrefs.GetInt ("Score", 0);
 		bestScore = PlayerPrefs.GetInt ("BestScore", 0);
+		actualLevel = PlayerPrefs.GetInt ("Level", 1);
+
+		levelManager.ChangeLevel (actualLevel);
 	}
 
 
@@ -105,6 +116,13 @@ public class Main : MonoBehaviour {
 	void WinStage(){
 		PlayerPrefs.SetInt ("Lifes", lifes);
 		PlayerPrefs.SetInt ("Score", score);
+
+		actualLevel += 1;
+		if (actualLevel > levelManager.GetMaxLevels ())
+			WinGame ();
+	
+		PlayerPrefs.SetInt ("Level", actualLevel);
+		levelManager.ChangeLevel (actualLevel);
 	}
 
 	void LoseStage(){
@@ -114,16 +132,35 @@ public class Main : MonoBehaviour {
 		timer = 0;
 	}
 
+
+
+	// --- Win / Lose Game
 	void WinGame(){
+		ResetLevelCount ();
+
 		if (score > bestScore) // Se puede mover a la scena Ganadora
 			PlayerPrefs.SetInt ("BestScore", score);
 
 		score += 500; // Usar algoritmo para calcular un mejor score
+
 		// + Cambio de Escena
 	}
 
 	void LoseGame(){
+		ResetLevelCount ();
 	}
+	// ------------------
+
+
+
+
+	private void ResetLevelCount(){
+		actualLevel = 1;
+		PlayerPrefs.SetInt ("Level", actualLevel);
+		PlayerPrefs.SetInt ("HaveSave", 0);
+	}
+
+
 
 	int scoreCalculate(){/* Tiempo * Combustible * Zona*/ return 0;}
 

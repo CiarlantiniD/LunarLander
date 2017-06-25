@@ -13,7 +13,7 @@ public class PreGameScript : MonoBehaviour {
 		timer += Time.deltaTime;
 
 		if (timer > 4.0f)
-			SceneManager.LoadScene ("Scene");
+			SceneManager.LoadScene ("Game");
 		
 	}
 }
