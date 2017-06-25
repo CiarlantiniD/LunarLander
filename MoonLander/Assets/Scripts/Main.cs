@@ -24,6 +24,7 @@ public class Main : MonoBehaviour {
 	// Score
 	private int score;
 	private int bestScore;
+	int tempScore;
 
 	// Text
 	private bool uiWin = false;
@@ -96,7 +97,7 @@ public class Main : MonoBehaviour {
 			
 			if (timer > 4.0f) {
 				naveScript.SetReset (); // NO VA
-				timer = 0; // NO VA
+				timer = 0;
 				uiWin = false; // NO VA
 				WinStage ();
 
@@ -115,8 +116,10 @@ public class Main : MonoBehaviour {
 		
 
 	void WinStage(){
+		scoreCalculate ();
 		PlayerPrefs.SetInt ("Lifes", lifes);
 		PlayerPrefs.SetInt ("Score", score);
+		timeGame = 0;
 
 		actualLevel += 1;
 		if (actualLevel > levelManager.GetMaxLevels ())
@@ -141,11 +144,10 @@ public class Main : MonoBehaviour {
 	// --- Win / Lose Game
 	void WinGame(){
 		ResetLevelCount ();
+		score += 100000; // Bonus Win
 
 		if (score > bestScore) // Se puede mover a la scena Ganadora
 			PlayerPrefs.SetInt ("BestScore", score);
-
-		score += 500; // Usar algoritmo para calcular un mejor score
 
 		SceneManager.LoadScene ("WinGame");
 	}
@@ -171,7 +173,11 @@ public class Main : MonoBehaviour {
 
 
 
-	int scoreCalculate(){/* Tiempo * Combustible * Zona*/ return 0;}
+	void scoreCalculate(){
+		tempScore = ((int)timeGame * 1000) - (naveFuel * 10);
+		tempScore = 150000 - tempScore;
+		score += tempScore;
+	}
 
 	public int GetLifes(){return lifes;}
 	public int GetScore(){return score;}
