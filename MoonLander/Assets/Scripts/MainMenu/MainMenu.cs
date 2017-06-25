@@ -70,9 +70,11 @@ public class MainMenu : MonoBehaviour {
 				break;
 			case 3:
 				print ("Salir Juego");
+				mainManager.ChangeMenu (3);
 				break;
 			default:
 				print ("Salir Juego"); // revisar
+				mainManager.ChangeMenu (3);
 				break;
 			}
 		}

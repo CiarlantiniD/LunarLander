@@ -29,10 +29,35 @@ public class MainManager : MonoBehaviour {
 	void Update () {
 
 
-		// HACER EL SWICH DE MENUS CON EL actualMenu;
+		if (actualMenu != 0) {
+
+			AllStateActiveFalse ();
+
+			switch (actualMenu) {				
+			case 1:
+				mainMenu.gameObject.SetActive (true);
+				break;
+			case 2:
+				optionsConf.gameObject.SetActive (true);
+				break;
+			case 3:
+				exitSure.gameObject.SetActive (true);
+				break;
+			default:
+				mainMenu.gameObject.SetActive (true);
+				break;
+			}
+			actualMenu = 0;
+		}
 
 
 
+	}
+
+	private void AllStateActiveFalse(){
+		mainMenu.gameObject.SetActive (false);
+		optionsConf.gameObject.SetActive (false);
+		exitSure.gameObject.SetActive (false);
 	}
 
 	private void GameStart(){
