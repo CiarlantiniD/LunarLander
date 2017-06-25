@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour {
 		optionsText[2] =transform.GetChild(2).GetComponent<Text>();
 		optionsText[3] =transform.GetChild(3).GetComponent<Text>();
 
+		haveSave = PlayerPrefs.GetInt ("HaveSave", 0);
 		HaveSave();
 		TranforText ();
 	}
@@ -62,6 +63,7 @@ public class MainMenu : MonoBehaviour {
 				mainManager.GoToContinueGame();
 				break;
 			case 1:
+				PlayerPrefs.SetInt ("HaveSave", 0);
 				mainManager.GoToNewGame ();
 				break;
 			case 2:

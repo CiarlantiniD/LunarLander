@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour {
 
@@ -48,13 +49,13 @@ public class Main : MonoBehaviour {
 
 
 		// --- Esto es en el caso de un New Game
-		PlayerPrefs.SetInt ("Lifes", 15);
+		PlayerPrefs.SetInt ("Lifes", 3);
 		PlayerPrefs.SetInt ("Score", 0);
 		PlayerPrefs.SetInt ("Level", 1);
 
 
 
-		lifes = PlayerPrefs.GetInt("Lifes",15);
+		lifes = PlayerPrefs.GetInt("Lifes",3);
 		score = PlayerPrefs.GetInt ("Score", 0);
 		bestScore = PlayerPrefs.GetInt ("BestScore", 0);
 		actualLevel = PlayerPrefs.GetInt ("Level", 1);
@@ -130,6 +131,9 @@ public class Main : MonoBehaviour {
 		PlayerPrefs.SetInt ("Lifes", lifes);
 		naveScript.SetReset ();
 		timer = 0;
+
+		if (lifes < 0)
+			LoseGame ();
 	}
 
 
@@ -143,11 +147,16 @@ public class Main : MonoBehaviour {
 
 		score += 500; // Usar algoritmo para calcular un mejor score
 
-		// + Cambio de Escena
+		SceneManager.LoadScene ("WinGame");
 	}
 
 	void LoseGame(){
 		ResetLevelCount ();
+		score = 0;
+		lifes = 3;
+		PlayerPrefs.SetInt ("Lifes", lifes);
+
+		SceneManager.LoadScene ("LoseGame");
 	}
 	// ------------------
 
