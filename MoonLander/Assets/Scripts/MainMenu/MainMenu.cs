@@ -59,21 +59,18 @@ public class MainMenu : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			switch (optionSlect) {
 			case 0:
-				print ("Continuar Juego");
+				mainManager.GoToContinueGame();
 				break;
 			case 1:
-				print ("Nuevo Juego");
+				mainManager.GoToNewGame ();
 				break;
 			case 2:
-				print ("Opciones Juego");
 				mainManager.ChangeMenu (2);
 				break;
 			case 3:
-				print ("Salir Juego");
 				mainManager.ChangeMenu (3);
 				break;
 			default:
-				print ("Salir Juego"); // revisar
 				mainManager.ChangeMenu (3);
 				break;
 			}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainManager : MonoBehaviour {
 
@@ -71,7 +72,10 @@ public class MainManager : MonoBehaviour {
 		// best score, score, lifes, Havesave
 	} 
 
-	public void ChangeMenu(int menuchange){
-		actualMenu = menuchange;
-	}
+	public void ChangeMenu(int menuchange){actualMenu = menuchange;}
+
+	public void GoToNewGame(){SceneManager.LoadScene ("PreGame");} // se tiene que configurar de diferente manera al playerPreference
+
+	public void GoToContinueGame(){SceneManager.LoadScene ("PreGame");}
+
 }

@@ -52,14 +52,13 @@ public class SureScript : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			switch (optionSlect) {
 			case 1:
-				print ("NO estoy seguro");
 				mainManager.ChangeMenu (1);
 				break;
 			case 2:
 				print ("Quitar Juego");
+				Application.Quit();
 				break;
 			default:
-				print ("NO estoy seguro");
 				mainManager.ChangeMenu (1);
 				break;
 			}
