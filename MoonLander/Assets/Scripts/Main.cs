@@ -165,6 +165,8 @@ public class Main : MonoBehaviour {
 
 
 
+
+
 	private void ResetLevelCount(){
 		actualLevel = 1;
 		PlayerPrefs.SetInt ("Level", actualLevel);
@@ -191,4 +193,6 @@ public class Main : MonoBehaviour {
 	public float GetNaveVerticalVel(){return naveVerticalVel;}
 
 	public float GetTime(){return timeGame;}
+
+	public bool GetPauseStatus(){return pauseStatus;}
 }

@@ -21,7 +21,11 @@ public class NaveScript : MonoBehaviour {
 	// Estado de Vivo
 	private bool alive;
 	private bool lander;
+	private string tempNameMaultiBase;
 
+	// GoodSpot Lander
+	private bool goodSpotLander;
+	private int multiScore;
 
 	// Fuego de Propulsores
 	GameObject shipFire;
@@ -47,6 +51,8 @@ public class NaveScript : MonoBehaviour {
 	void Reset()
 	{
 		shipFire.SetActive (false);
+		goodSpotLander = false;
+		multiScore = 1;
 		rb.AddForce(Vector2.right * 20);
 		transform.eulerAngles = new Vector3 (0,0,-15);
 		verticalVel = 0;
@@ -117,7 +123,40 @@ public class NaveScript : MonoBehaviour {
     }
 
 
+	void OnTriggerEnter2D(Collider2D triggerColl){
 
+		if (triggerColl.gameObject.tag == "GoodSpot") {
+			goodSpotLander = true;
+
+			tempNameMaultiBase = triggerColl.gameObject.name;
+			tempNameMaultiBase = tempNameMaultiBase.Substring (0, 11);
+
+			if (tempNameMaultiBase == "BaseMult_x2")
+				multiScore = 2;
+			else if (tempNameMaultiBase == "BaseMult_x3")
+				multiScore = 3;
+			else if (tempNameMaultiBase == "BaseMult_x5")
+				multiScore = 5;
+		}
+			
+
+
+
+
+
+		print ("Spot: " + goodSpotLander + "  Multi:" + multiScore); // BOOORRARRRRR
+	}
+
+	void OnTriggerExit2D(Collider2D triggerColl){
+
+		if (triggerColl.gameObject.tag == "GoodSpot") {
+			goodSpotLander = false;
+			multiScore = 1;
+		}
+			
+
+		print ("Spot: " + goodSpotLander + "  Multi:" + multiScore);
+	}
 
 
 	void OnCollisionEnter2D(Collision2D coll){
@@ -125,6 +164,8 @@ public class NaveScript : MonoBehaviour {
 		if (coll.relativeVelocity.magnitude > 0.6f)
 			Destroid ();
 		else if (transform.rotation.z > 0.25f || transform.rotation.z < -0.25f)
+			Destroid ();
+		else if (!goodSpotLander)
 			Destroid ();
 		else
 			Lander(); // Puede medir la complejidad del aterrizaje y dar ma so manos puntos por eso.
