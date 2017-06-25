@@ -6,10 +6,6 @@ using UnityEngine.Events;
 public class NaveScript : MonoBehaviour {
 
 
-	//public delegate void NaveDestruida();
-	//public static event NaveDestruida naveDestroid;
-	//UnityEvent NaveLander;
-
     Rigidbody2D rb;
 
 	float timer = 0f;
@@ -26,6 +22,10 @@ public class NaveScript : MonoBehaviour {
 	private bool alive;
 	private bool lander;
 
+
+	// Fuego de Propulsores
+	GameObject shipFire;
+
 	RaycastHit2D hit;
 
 	Vector2 startPosition;
@@ -39,12 +39,14 @@ public class NaveScript : MonoBehaviour {
 	void Awake () {
         rb = GetComponent<Rigidbody2D>();
 		startPosition = new Vector2(-9,8);
+		shipFire = transform.GetChild (0).gameObject;
 		Reset ();
 	}
 
 
 	void Reset()
 	{
+		shipFire.SetActive (false);
 		rb.AddForce(Vector2.right * 20);
 		transform.eulerAngles = new Vector3 (0,0,-15);
 		verticalVel = 0;
@@ -98,15 +100,20 @@ public class NaveScript : MonoBehaviour {
 
     void FixedUpdate()
     {
-		if (Input.GetKey(KeyCode.Space) && fuel > -1 && alive && !pause)
-		{
-			rb.AddRelativeForce(Vector2.up);
+		if (Input.GetKey (KeyCode.Space) && fuel > -1 && alive && !pause) {
+			rb.AddRelativeForce (Vector2.up);
 			gravityEstable = true;
+			shipFire.SetActive (true);
 			fuel -= 1;
+		} 
+		else {
+			shipFire.SetActive (false);
 		}
 
 		if (fuelEmpty)
 			rb.AddForce (Vector2.down * 0.1f);
+
+
     }
 
 
