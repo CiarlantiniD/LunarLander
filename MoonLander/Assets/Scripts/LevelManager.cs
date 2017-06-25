@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour {
 	private int selectLevel = 0; // Cero para evitar cambios
 	private int actuaLevel = 1;
 
-	int maxlevels = 1;
+	int maxlevels = 5; // 1
 	Transform [] level;
 
 	void Awake () {
@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour {
 		else if (instance != this)
 			Destroy (gameObject);
 
-		level = new Transform [5]; 
+		level = new Transform [6]; 
 
 		for (int i = 1; i < maxlevels+1; i++) {
 			level[i] = transform.GetChild(i-1).GetComponent<Transform>();
