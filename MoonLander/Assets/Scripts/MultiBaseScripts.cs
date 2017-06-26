@@ -6,7 +6,6 @@ public class MultiBaseScripts : MonoBehaviour {
 
 	Main main;
 
-
 	SpriteRenderer multiBase;
 	float timer;
 	float timerElements = 2f;
