@@ -7,6 +7,7 @@ public class NaveScript : MonoBehaviour {
 
 
     Rigidbody2D rb;
+	SpriteRenderer sr;
 
 	float timer = 0f;
 	bool gravityEstable = false;
@@ -30,6 +31,9 @@ public class NaveScript : MonoBehaviour {
 	// Fuego de Propulsores
 	GameObject shipFire;
 
+	// Explotion
+	ExplotionScript explotion;
+
 	RaycastHit2D hit;
 
 	Vector2 startPosition;
@@ -41,16 +45,20 @@ public class NaveScript : MonoBehaviour {
 
 
 	void Awake () {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>(); 
+		sr = GetComponent<SpriteRenderer> ();
 		startPosition = new Vector2(-9,8);
 		shipFire = transform.GetChild (0).gameObject;
+		explotion = transform.GetChild (1).GetComponent<ExplotionScript>();
 		Reset ();
 	}
 
 
 	void Reset()
 	{
+		sr.enabled = true;
 		shipFire.SetActive (false);
+		explotion.ResetExplosion ();
 		goodSpotLander = false;
 		multiScore = 1;
 		rb.AddForce(Vector2.right * 20);
@@ -177,11 +185,12 @@ public class NaveScript : MonoBehaviour {
 
 
 	void Destroid(){
-		// + Animacion de Destruccion
 		// + Hombre saliendo al espacio (plus)
 		alive = false;
 		StopMove ();
 		verticalVel = 0f;
+		sr.enabled = false;
+		explotion.ActiveExplotion ();
 		print ("Perdiste");
 	}
 

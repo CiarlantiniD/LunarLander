@@ -134,11 +134,12 @@ public class Main : MonoBehaviour {
 		lifes -= 1;
 		PlayerPrefs.SetInt ("Lifes", lifes);
 		PlayerPrefs.SetInt ("Fuel", 1000);
-		naveScript.SetReset ();
-		timer = 0;
 
 		if (lifes < 0)
 			LoseGame ();
+
+		naveScript.SetReset ();
+		timer = 0;
 	}
 
 
@@ -198,4 +199,5 @@ public class Main : MonoBehaviour {
 	public float GetTime(){return timeGame;}
 
 	public bool GetPauseStatus(){return pauseStatus;}
+	public bool GetStatusNaveAlive() {return naveScript.GetStatusAlive ();}
 }
