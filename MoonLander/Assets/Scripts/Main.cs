@@ -129,12 +129,15 @@ public class Main : MonoBehaviour {
 		actualLevel += 1;
 		if (actualLevel > levelManager.GetMaxLevels ())
 			WinGame ();
-	
-		PlayerPrefs.SetInt ("Level", actualLevel);
+		else {
+			PlayerPrefs.SetInt ("Level", actualLevel);
 
-		levelManager.ChangeLevel (actualLevel);
-		naveScript.SetReset ();
-		timer = 0;
+			levelManager.ChangeLevel (actualLevel);
+			naveScript.SetReset ();
+			timer = 0;
+		}
+	
+
 	}
 
 	void LoseStage(){
@@ -144,10 +147,13 @@ public class Main : MonoBehaviour {
 
 		if (lifes < 0)
 			LoseGame ();
+		else {
+			naveScript.SetReset ();
+			timer = 0;
+			soundManager.PlayMusic_Game ("play");
+		}
 
-		naveScript.SetReset ();
-		timer = 0;
-		soundManager.PlayMusic_Game ("play");
+
 	}
 
 
@@ -161,6 +167,7 @@ public class Main : MonoBehaviour {
 			PlayerPrefs.SetInt ("BestScore", score);
 
 		soundManager.PlayMusic_Game ("stop");
+		PlayerPrefs.SetInt ("Fuel", 1000);
 
 		SceneManager.LoadScene ("WinGame");
 	}

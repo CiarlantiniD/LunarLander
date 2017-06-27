@@ -16,6 +16,8 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource fxMenuStart;
 
 	public AudioSource shipFire;
+	public AudioSource explotionShip;
+	public AudioSource fuelAlarm;
 
 	bool setMute = true;
 
@@ -43,6 +45,8 @@ public class SoundManager : MonoBehaviour {
 		fxMenuStart.Stop();
 
 		shipFire.Stop ();
+		explotionShip.Stop ();
+		fuelAlarm.Stop ();
 	}
 
 	public void VolumenAllSounds(float volumen){
@@ -70,6 +74,8 @@ public class SoundManager : MonoBehaviour {
 			fxMenuStart.volume = volumen;
 
 			shipFire.volume = volumen;
+			explotionShip.volume = volumen;
+			fuelAlarm.volume = volumen;
 		}
 
 	}
@@ -131,6 +137,14 @@ public class SoundManager : MonoBehaviour {
 			shipFire.Stop ();
 
 	}
+		
+	public void PlayFX_GameShipFuelAlarm(){
+		if (!fuelAlarm.isPlaying)
+			fuelAlarm.Play ();
+	}
+
+
+	public void PlayFX_GameShipExplotion(){explotionShip.Play ();}
 
 
 	public void PlayFX_MenuMove(){fxMenuMove.Play ();}

@@ -93,10 +93,12 @@ public class NaveScript : MonoBehaviour {
 			if (gravityEstable || timer > 5.0f) {
 				rb.gravityScale = 0.002f;
 			}
+	
 
-			if (fuel <= 0) {
+			if (fuel <= 0)
 				fuelEmpty = true;
-			}
+			else if (fuel < 200 && fuel > 0)
+				soundManager.PlayFX_GameShipFuelAlarm ();
 
 			// --- Prueba RayCast ---
 			//hit = Physics2D.Raycast (transform.position, Vector2.down, Mathf.Infinity);
@@ -197,7 +199,7 @@ public class NaveScript : MonoBehaviour {
 		verticalVel = 0f;
 		sr.enabled = false;
 		explotion.ActiveExplotion ();
-		print ("Perdiste");
+		soundManager.PlayFX_GameShipExplotion ();
 	}
 
 	void Lander(){
