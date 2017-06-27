@@ -68,8 +68,11 @@ public class MainMenu : MonoBehaviour {
 				mainManager.GoToContinueGame();
 				break;
 			case 1:
+				PlayerPrefs.SetInt ("Score", 0);
+				PlayerPrefs.SetInt ("Lifes", 2);
+				PlayerPrefs.SetInt ("Fuel", 1000);
+				PlayerPrefs.SetInt ("Level", 1);
 				soundManager.PlayFX_MenuStart ();
-				PlayerPrefs.SetInt ("HaveSave", 0);
 				mainManager.GoToNewGame ();
 				break;
 			case 2:

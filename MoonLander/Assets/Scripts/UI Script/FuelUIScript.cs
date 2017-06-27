@@ -11,15 +11,12 @@ public class FuelUIScript : MonoBehaviour {
 	int naveFuel;
 
 
-	// Use this for initialization
 	void Awake () {
 		fuelCount = GetComponent<Text> ();
 		parentScript = transform.GetComponentInParent<UImanager> ();
 	}
 
 
-
-	// Update is called once per frame
 	void Update () {
 		naveFuel = parentScript.naveFuel;
 

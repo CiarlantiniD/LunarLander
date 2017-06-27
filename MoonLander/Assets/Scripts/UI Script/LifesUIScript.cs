@@ -16,7 +16,7 @@ public class LifesUIScript : MonoBehaviour {
 
 
 	void Update () {
-		lifes = PlayerPrefs.GetInt("Lifes",15);
+		lifes = PlayerPrefs.GetInt("Lifes");
 
 		if (lifes < 0)
 			lifesCount.text = "x 0";

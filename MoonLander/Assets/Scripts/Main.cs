@@ -52,17 +52,10 @@ public class Main : MonoBehaviour {
 		levelManager = GameObject.Find ("LevelsManager").GetComponent<LevelManager> ();
 		soundManager = GameObject.Find ("SoundManager").GetComponent<SoundManager> ();
 
-		// --- Esto es en el caso de un New Game
-		PlayerPrefs.SetInt ("Lifes", 3);
-		PlayerPrefs.SetInt ("Score", 0);
-		PlayerPrefs.SetInt ("Level", 1);
-		PlayerPrefs.SetInt ("Fuel", 1000);
-
-
-		lifes = PlayerPrefs.GetInt("Lifes",3);
-		score = PlayerPrefs.GetInt ("Score", 0);
-		bestScore = PlayerPrefs.GetInt ("BestScore", 0);
-		actualLevel = PlayerPrefs.GetInt ("Level", 1);
+		lifes = PlayerPrefs.GetInt("Lifes");
+		score = PlayerPrefs.GetInt ("Score");
+		bestScore = PlayerPrefs.GetInt ("BestScore");
+		actualLevel = PlayerPrefs.GetInt ("Level");
 
 		levelManager.ChangeLevel (actualLevel);
 		soundManager.PlayMusic_Game ("play");
@@ -117,13 +110,16 @@ public class Main : MonoBehaviour {
 			soundManager.PlayMusic_Game ("pause");
 		}
 	}
-		
+
+
+	// ------ Win / Lose Stage -------
 
 	void WinStage(){
 		scoreCalculate ();
 		PlayerPrefs.SetInt ("Lifes", lifes);
 		PlayerPrefs.SetInt ("Score", score);
 		PlayerPrefs.SetInt ("Fuel", naveFuel);
+		PlayerPrefs.SetInt ("HaveSave", 1);
 		timeGame = 0;
 
 		actualLevel += 1;
@@ -144,6 +140,7 @@ public class Main : MonoBehaviour {
 		lifes -= 1;
 		PlayerPrefs.SetInt ("Lifes", lifes);
 		PlayerPrefs.SetInt ("Fuel", 1000);
+		PlayerPrefs.SetInt ("HaveSave", 1);
 
 		if (lifes < 0)
 			LoseGame ();
@@ -155,46 +152,48 @@ public class Main : MonoBehaviour {
 
 
 	}
+	// -----------------------------------------------------
 
 
 
-	// --- Win / Lose Game
+
+
+	// ------ Win / Lose Game -------
 	void WinGame(){
 		ResetLevelCount ();
 		score += 100000; // Bonus Win
 
-		if (score > bestScore) // Se puede mover a la scena Ganadora
+		if (score > bestScore)
 			PlayerPrefs.SetInt ("BestScore", score);
 
 		soundManager.PlayMusic_Game ("stop");
 		soundManager.PlayFX_GameWinStage_Morse ();
+
 		PlayerPrefs.SetInt ("Fuel", 1000);
+		PlayerPrefs.SetInt ("Score", 0);
 
 		SceneManager.LoadScene ("WinGame");
 	}
 
 	void LoseGame(){
 		ResetLevelCount ();
-		score = 0;
-		lifes = 3;
-		PlayerPrefs.SetInt ("Lifes", lifes);
+		//score = 0;
+		//lifes = 2;
+
+		PlayerPrefs.SetInt ("Lifes", 2);
+		PlayerPrefs.SetInt ("Score", 0);
+
 		soundManager.PlayMusic_Game ("stop");
 
 		SceneManager.LoadScene ("LoseGame");
 	}
-	// ------------------
-
-
-
-
-
 
 	private void ResetLevelCount(){
 		actualLevel = 1;
 		PlayerPrefs.SetInt ("Level", actualLevel);
 		PlayerPrefs.SetInt ("HaveSave", 0);
 	}
-
+	// -----------------------------------------------------
 
 
 	void scoreCalculate(){
@@ -211,7 +210,6 @@ public class Main : MonoBehaviour {
 	public bool GetUILose(){return uiLose;}
 	public bool GetUIPause(){return uiPause;}
 
-	 
 	public int GetNaveFuel(){return naveFuel;}
 	public float GetNaveVerticalVel(){return naveVerticalVel;}
 

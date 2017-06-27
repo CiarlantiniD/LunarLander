@@ -16,7 +16,7 @@ public class MainManager : MonoBehaviour {
 	private int actualMenu = 0;
 
 	void Awake () {
-		GameStart ();
+		GameStartConfiguration ();
 
 		soundManager = GameObject.Find ("SoundManager").GetComponent<SoundManager>();
 
@@ -66,15 +66,18 @@ public class MainManager : MonoBehaviour {
 		exitSure.gameObject.SetActive (false);
 	}
 
-	private void GameStart(){
-		if (PlayerPrefs.GetInt ("SoundGame") < 0)
+	private void GameStartConfiguration(){
+
+		if (PlayerPrefs.GetInt ("HaveSave") != 1) {
+			
 			PlayerPrefs.SetInt ("SoundGame", 1);
-
-		if (PlayerPrefs.GetInt ("VolumenGame") < 0)
 			PlayerPrefs.SetInt ("VolumenGame", 100);
-
-		// AMPLIAR
-		// best score, score, lifes, Havesave
+			PlayerPrefs.SetInt ("BestScore", 0);
+			PlayerPrefs.SetInt ("Score", 0);
+			PlayerPrefs.SetInt ("Lifes", 2);
+			PlayerPrefs.SetInt ("Fuel", 1000);
+			PlayerPrefs.SetInt ("Level", 1);
+		}
 	} 
 
 	public void ChangeMenu(int menuchange){actualMenu = menuchange;}

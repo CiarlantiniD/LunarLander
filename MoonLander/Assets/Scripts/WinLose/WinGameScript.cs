@@ -30,8 +30,8 @@ public class WinGameScript : MonoBehaviour {
 		scoreText = texts[2].GetComponent<Text> ();
 		bestScoreText= texts[3].GetComponent<Text> ();
 
-		score = PlayerPrefs.GetInt ("Score", 0);
-		bestScore = PlayerPrefs.GetInt ("BestScore", 0);
+		score = PlayerPrefs.GetInt ("Score");
+		bestScore = PlayerPrefs.GetInt ("BestScore");
 
 		if (bestScore == score)
 			bestScoreYou = " (You)";
