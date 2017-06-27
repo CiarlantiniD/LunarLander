@@ -5,7 +5,7 @@ public class CursorManager : MonoBehaviour {
 
 	public static CursorManager instance = null;
 
-	void Start()
+	void Awake()
 	{
 		if (instance == null)
 			instance = this;
