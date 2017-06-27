@@ -1556,7 +1556,7 @@ RectTransform:
   m_Father: {fileID: 620048091}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.1}
+  m_AnchorMin: {x: 0.5, y: 0.08}
   m_AnchorMax: {x: 0.5, y: 0.16}
   m_AnchoredPosition: {x: -0.000015259, y: 0}
   m_SizeDelta: {x: 575.5, y: 0}
@@ -1594,7 +1594,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Create by Dar\xEDo CiarIantini - 2017 | v1.0\nAtari, Inc. - 1979 / Music
-    by Jonn Serrie & Epicurus"
+    by Jonn Serrie & Epicurus\nAffinity Photo / WavePad Audio Editor"
 --- !u!222 &673875833
 CanvasRenderer:
   m_ObjectHideFlags: 0
