@@ -1,8 +1,7 @@
 ﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
-
-public class MultiBaseScripts : MonoBehaviour {
-
+ [RequireComponent(typeof(Rigidbody2D))] [RequireComponent(typeof(BoxCollider2D))] 
+public class MultiBaseScripts : MonoBehaviour { 
 	Main main;
 
 	SpriteRenderer multiBase;

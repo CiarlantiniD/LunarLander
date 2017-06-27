@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NaveScript : MonoBehaviour {
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 
+public class NaveScript : MonoBehaviour {
 
     Rigidbody2D rb;
 	SpriteRenderer sr;
