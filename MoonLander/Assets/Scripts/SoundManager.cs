@@ -86,14 +86,14 @@ public class SoundManager : MonoBehaviour {
 
 	public void MuteAllSounds(int defMute){
 
-		if (defMute == 0) {
+		/*if (defMute == 0) {
 			VolumenAllSounds (0);
 			setMute = false;
 		}
 		else{
 			VolumenAllSounds (volumenGame);
 			setMute = true;
-		}
+		}*/
 	}
 
 
