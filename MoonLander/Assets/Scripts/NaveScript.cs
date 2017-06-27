@@ -207,7 +207,7 @@ public class NaveScript : MonoBehaviour {
 		StopMove ();
 		verticalVel = 0f;
 		lander = true;
-		print ("Ganaste");
+		soundManager.PlayFX_GameShipLander ();
 	}
 
 	void StopMove(){
