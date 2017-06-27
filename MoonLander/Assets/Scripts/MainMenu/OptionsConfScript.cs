@@ -130,15 +130,19 @@ public class OptionsConfScript : MonoBehaviour {
 
 		if (PlayerPrefs.GetInt ("VolumenGame") == 100) {
 			optionsText [1].text = "Volumen - 100";
+			setVolumen = 0;
 		}
 		else if (PlayerPrefs.GetInt ("VolumenGame") == 75) {
 			optionsText [1].text = "Volumen - 75";
+			setVolumen = 3;
 		}
 		else if (PlayerPrefs.GetInt ("VolumenGame") == 50) {
 			optionsText [1].text = "Volumen - 50";
+			setVolumen = 2;
 		}
 		else if (PlayerPrefs.GetInt ("VolumenGame") == 25) {
 			optionsText [1].text = "Volumen - 25";
+			setVolumen = 1;
 		}
 
 
