@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,14 +9,11 @@ public class VerticalVelUIScript : MonoBehaviour {
 	Text verticalVelCount;
 	float naveVerticalVel;
 
-
-	// Use this for initialization
 	void Awake () {
 		verticalVelCount = GetComponent<Text> ();
 		parentScript = transform.GetComponentInParent<UImanager> ();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		naveVerticalVel = parentScript.naveVerticalVel;
 
@@ -36,6 +32,5 @@ public class VerticalVelUIScript : MonoBehaviour {
 			else
 				verticalVelCount.text = naveVerticalVel.ToString ();
 		}
-			
 	}
 }

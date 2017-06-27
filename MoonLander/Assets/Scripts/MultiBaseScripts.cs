@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 
 public class MultiBaseScripts : MonoBehaviour {
 
 	Main main;
-
 
 	SpriteRenderer multiBase;
 	float timer;

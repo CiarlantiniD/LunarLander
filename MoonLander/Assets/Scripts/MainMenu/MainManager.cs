@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainManager : MonoBehaviour {
-
 
 	SoundManager soundManager;
 
@@ -29,13 +27,10 @@ public class MainManager : MonoBehaviour {
 
 		soundManager.PlayMusic_Menu ();
 	}
-	
 
 	void Update () {
 
-
 		if (actualMenu != 0) {
-
 
 			AllStateActiveFalse ();
 
@@ -55,9 +50,6 @@ public class MainManager : MonoBehaviour {
 			}
 			actualMenu = 0;
 		}
-
-
-
 	}
 
 	private void AllStateActiveFalse(){

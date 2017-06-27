@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections; using System.Collections.Generic; using UnityEngine;
 using UnityEngine.UI;
 
 public class UImanager : MonoBehaviour {
@@ -37,12 +35,7 @@ public class UImanager : MonoBehaviour {
 		pauseText.gameObject.SetActive (false);
 
 	}
-
-
-	// Use this for initialization
-	//void Start () {}
-
-	// Update is called once per frame
+		
 	void Update () {
 
 		// --- UI PLayer ---
@@ -71,8 +64,6 @@ public class UImanager : MonoBehaviour {
 			pauseText.gameObject.SetActive (true);
 		else
 			pauseText.gameObject.SetActive (false);
-
-
 	}
 }
  

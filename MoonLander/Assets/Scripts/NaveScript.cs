@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class NaveScript : MonoBehaviour {
 
 
     Rigidbody2D rb;
 	SpriteRenderer sr;
+	RaycastHit2D hit;
+	Vector2 startPosition;
 
 	float timer = 0f;
 	bool gravityEstable = false;
@@ -37,15 +38,10 @@ public class NaveScript : MonoBehaviour {
 	// Explotion
 	ExplotionScript explotion;
 
-	RaycastHit2D hit;
-
-	Vector2 startPosition;
-
 	// Pause
 	bool pause;
 	Vector3 velocitySave;
 	float angularVelocitySave;
-
 
 	void Awake () {
         rb = GetComponent<Rigidbody2D>(); 
@@ -88,13 +84,11 @@ public class NaveScript : MonoBehaviour {
 			} else if (Input.GetKey (KeyCode.RightArrow) && fuel > -1) {
 				transform.eulerAngles += Vector3.back;
 			}
-
-
+				
 			if (gravityEstable || timer > 5.0f) {
 				rb.gravityScale = 0.002f;
 			}
 	
-
 			if (fuel <= 0)
 				fuelEmpty = true;
 			else if (fuel < 200 && fuel > 0)
@@ -115,9 +109,6 @@ public class NaveScript : MonoBehaviour {
 	}
 
 
-
-
-
     void FixedUpdate()
     {
 		if (Input.GetKey (KeyCode.Space) && fuel > -1 && alive && !pause) {
@@ -134,11 +125,8 @@ public class NaveScript : MonoBehaviour {
 
 		if (fuelEmpty)
 			rb.AddForce (Vector2.down * 0.1f);
-
-
     }
-
-
+		
 	void OnTriggerEnter2D(Collider2D triggerColl){
 
 		if (triggerColl.gameObject.tag == "GoodSpot") {
@@ -163,8 +151,7 @@ public class NaveScript : MonoBehaviour {
 			multiScore = 1;
 		}
 	}
-
-
+		
 	void OnCollisionEnter2D(Collision2D coll){
 		
 		if (coll.relativeVelocity.magnitude > 0.6f)
@@ -174,11 +161,12 @@ public class NaveScript : MonoBehaviour {
 		else if (!goodSpotLander)
 			Destroid ();
 		else
-			Lander(); // Puede medir la complejidad del aterrizaje y dar ma so manos puntos por eso.
+			Lander();
 	}
 
-	void OnBecameInvisible(){Destroid();}
-
+	public void OnBecameInvisible(){ // NO esta funcionando
+		Destroid();
+	}
 
 	void Destroid(){
 		alive = false;
@@ -228,5 +216,4 @@ public class NaveScript : MonoBehaviour {
 	public bool Getlander(){return lander;}
 
 	public int GetBaseMulti(){return multiScore;}
-
 }

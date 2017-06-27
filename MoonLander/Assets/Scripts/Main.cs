@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour {
@@ -73,11 +71,6 @@ public class Main : MonoBehaviour {
 		naveVerticalVel = naveScript.GetVerticalVelocity ();
 		lander = naveScript.Getlander ();
 
-
-
-
-
-
 		if (!naveScript.GetStatusAlive () && !lander) {
 			timer += Time.deltaTime;
 			soundManager.PlayMusic_Game ("stop");
@@ -99,12 +92,11 @@ public class Main : MonoBehaviour {
 				WinStage ();
 				uiWin = false;
 			}
-		
 		}
 
 
 
-		// --- Pause ---
+		// ------ Pause -------
 		if (Input.GetKeyDown(KeyCode.Escape)){
 			pauseStatus = naveScript.PauseStatus ();
 			uiPause = pauseStatus;
@@ -151,16 +143,12 @@ public class Main : MonoBehaviour {
 			timer = 0;
 			soundManager.PlayMusic_Game ("play");
 		}
-
-
 	}
 	// -----------------------------------------------------
 
 
-
-
-
 	// ------ Win / Lose Game -------
+
 	void WinGame(){
 		ResetLevelCount ();
 		score += 100000; // Bonus Win
@@ -181,8 +169,7 @@ public class Main : MonoBehaviour {
 
 	void LoseGame(){
 		ResetLevelCount ();
-		//score = 0;
-		//lifes = 2;
+		//score = 0; //lifes = 2;
 
 		PlayerPrefs.SetInt ("Lifes", 2);
 		PlayerPrefs.SetInt ("Score", 0);

@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
 
 	public static LevelManager instance = null;
 
-	private int selectLevel = 0; // Cero para evitar cambios
+	private int selectLevel = 0;
 	private int actuaLevel = 1;
 
-	int maxlevels = 5; // 1
+	int maxlevels = 5;
 	Transform [] level;
 
 	void Awake () {
@@ -24,10 +23,7 @@ public class LevelManager : MonoBehaviour {
 			level[i] = transform.GetChild(i-1).GetComponent<Transform>();
 			level [i].gameObject.SetActive (false);
 		}
-			
-
 	}
-	
 
 	void Update () {
 

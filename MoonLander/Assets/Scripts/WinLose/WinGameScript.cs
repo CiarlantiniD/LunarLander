@@ -1,19 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class WinGameScript : MonoBehaviour {
 
-
 	Transform [] texts;
-	// 0 - Canvas
-	// 1 - Title
-	// 2 - ScoreText
-	// 3 - BestScoreText
-	// 4 - ImageNave
-
 
 	float timer = 0;
 

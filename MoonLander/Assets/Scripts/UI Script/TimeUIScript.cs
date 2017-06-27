@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,13 +13,11 @@ public class TimeUIScript : MonoBehaviour {
 
 	string sMin, sSeg, addMin, addSeg;
 
-	// Use this for initialization
 	void Awake () {
 		parentScript = transform.GetComponentInParent<UImanager> ();
 		timerTextUI = GetComponent<Text> ();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		timer = parentScript.timeGame;
 		seg = (int)timer % 60;

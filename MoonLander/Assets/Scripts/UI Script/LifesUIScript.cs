@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,13 +7,10 @@ public class LifesUIScript : MonoBehaviour {
 	Text lifesCount;
 	int lifes = 99;
 
-
-	// Use this for initialization
 	void Awake () {
 		lifesCount = GetComponent<Text> ();
 	}
-
-
+		
 	void Update () {
 		lifes = PlayerPrefs.GetInt("Lifes");
 

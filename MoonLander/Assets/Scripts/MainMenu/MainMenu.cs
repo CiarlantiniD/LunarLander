@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +8,7 @@ public class MainMenu : MonoBehaviour {
 	SoundManager soundManager;
 
 	// Save Configuration
-	private int haveSave = 1; // CONFIGURATION REVISAR
+	private int haveSave = 1; // Configuration
 	private int intTranforText = 1;
 	private int optionSlectMaxArgument = 2; // 1 Yes / 2 No
 
@@ -45,8 +44,7 @@ public class MainMenu : MonoBehaviour {
 				optionsText [i].color=notSelectColor;
 		}
 	}
-
-
+		
 	void Update () {
 		 
 		if (Input.GetKeyDown (KeyCode.UpArrow) && optionSlect >= optionSlectMaxArgument) {
@@ -58,9 +56,7 @@ public class MainMenu : MonoBehaviour {
 			TranforText ();
 			soundManager.PlayFX_MenuMove ();
 		}
-
-
-
+			
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			switch (optionSlect) {
 			case 0:
@@ -92,8 +88,7 @@ public class MainMenu : MonoBehaviour {
 			}
 		}
 	}
-
-
+		
 	void HaveSave(){
 		if (haveSave == 1) {
 			intTranforText = 0;

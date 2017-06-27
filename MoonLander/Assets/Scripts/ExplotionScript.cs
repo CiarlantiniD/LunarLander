@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 
 public class ExplotionScript : MonoBehaviour {
 
-
 	SpriteRenderer [] animationExplotion;
+
 	float timer = 0;
 	bool activate = false;
 	int count = 0;
-
-
 
 	void Awake () {
 		//animationExplotion = transform.GetComponentsInChildren<SpriteRenderer> ();
@@ -22,10 +19,7 @@ public class ExplotionScript : MonoBehaviour {
 		animationExplotion [3] = transform.FindChild ("explo01").GetComponentInChildren<SpriteRenderer> ();
 		animationExplotion [4] = transform.FindChild ("explo00").GetComponentInChildren<SpriteRenderer> ();
 	}
-
-
-
-
+		
 	void Update () {
 
 		if (activate) {
@@ -36,8 +30,6 @@ public class ExplotionScript : MonoBehaviour {
 				timer = 0;
 			}
 				
-
-
 			switch(count){
 				case 0:
 					animationExplotion [0].enabled = true;

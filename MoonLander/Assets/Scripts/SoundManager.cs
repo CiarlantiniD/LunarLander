@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 
 	public static SoundManager instance = null;
-
 
 	public AudioSource musicMenu;
 	public AudioSource musicGame;
@@ -99,7 +97,6 @@ public class SoundManager : MonoBehaviour {
 			setMute = true;
 			VolumenAllSounds (PlayerPrefs.GetInt ("VolumenGame", 100));
 		}
-
 	}
 
 
@@ -125,54 +122,39 @@ public class SoundManager : MonoBehaviour {
 		else
 			command = "ERROR";
 
-
 		if (command == "ERROR"){
 			if (musicMenu.isPlaying)
 				musicGame.Stop ();
 			else
 				musicGame.Play ();
 		}
-
-
-
 	}
 
 	public void PlayFX_GameShipFire(bool status){
 		if (status) {
-			if (!shipFire.isPlaying) {
+			if (!shipFire.isPlaying)
 				shipFire.Play ();
-			}
 		}
 		else
 			shipFire.Stop ();
-
 	}
 		
 	public void PlayFX_GameShipFuelAlarm(){
 		if (!fuelAlarm.isPlaying)
 			fuelAlarm.Play ();
 	}
-
-
+		
 	public void PlayFX_GameShipExplotion(){
 		if (forceNotExplotion)
 			explotionShip.Play ();
 	}
 
 	public void PlayFX_GameShipLander(){landerShip.Play ();}
-
-
-
 	public void PlayFX_GameWinStage_Morse(){morseWinStage.Play ();}
 
-
-
 	public void PlayFX_MenuMove(){fxMenuMove.Play ();}
-
 	public void PlayFX_MenuSelect(){fxMenuSelect.Play ();}
-
 	public void PlayFX_MenuBack(){fxMenuBack.Play ();}
-
 	public void PlayFX_MenuStart(){fxMenuStart.Play ();}
 
 
@@ -182,5 +164,4 @@ public class SoundManager : MonoBehaviour {
 		else
 			forceNotExplotion = true;
 	}
-
 }

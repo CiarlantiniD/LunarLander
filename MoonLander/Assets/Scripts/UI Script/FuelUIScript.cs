@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,13 +9,11 @@ public class FuelUIScript : MonoBehaviour {
 	Text fuelCount;
 	int naveFuel;
 
-
 	void Awake () {
 		fuelCount = GetComponent<Text> ();
 		parentScript = transform.GetComponentInParent<UImanager> ();
 	}
-
-
+		
 	void Update () {
 		naveFuel = parentScript.naveFuel;
 

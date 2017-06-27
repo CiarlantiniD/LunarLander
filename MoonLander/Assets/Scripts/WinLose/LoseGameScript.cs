@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections; using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +13,5 @@ public class LoseGameScript : MonoBehaviour {
 
 		if (timer > 4.0f)
 			SceneManager.LoadScene ("MainMenu");
-		
 	}
 }
