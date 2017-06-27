@@ -11,8 +11,6 @@ public class PreGameScript : MonoBehaviour {
 	void Awake () {
 		texts = transform.GetComponentsInChildren<Transform> (); 
 
-		print (texts.Length);
-
 		for (int i = 1; i < texts.Length; i++) {
 			texts [i].gameObject.SetActive (false);
 		}

@@ -20,6 +20,8 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource fuelAlarm;
 	public AudioSource landerShip;
 
+	public AudioSource morseWinStage;
+
 	bool setMute = true;
 
 	void Awake ()
@@ -49,6 +51,8 @@ public class SoundManager : MonoBehaviour {
 		explotionShip.Stop ();
 		fuelAlarm.Stop ();
 		landerShip.Stop ();
+
+		morseWinStage.Stop ();
 	}
 
 	public void VolumenAllSounds(float volumen){
@@ -79,6 +83,8 @@ public class SoundManager : MonoBehaviour {
 			explotionShip.volume = volumen;
 			fuelAlarm.volume = volumen;
 			landerShip.volume = volumen;
+
+			morseWinStage.volume = volumen;
 		}
 
 	}
@@ -153,6 +159,9 @@ public class SoundManager : MonoBehaviour {
 
 
 
+	public void PlayFX_GameWinStage_Morse(){morseWinStage.Play ();}
+
+
 
 	public void PlayFX_MenuMove(){fxMenuMove.Play ();}
 
@@ -161,5 +170,8 @@ public class SoundManager : MonoBehaviour {
 	public void PlayFX_MenuBack(){fxMenuBack.Play ();}
 
 	public void PlayFX_MenuStart(){fxMenuStart.Play ();}
+
+
+
 
 }

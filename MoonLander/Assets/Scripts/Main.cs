@@ -167,6 +167,7 @@ public class Main : MonoBehaviour {
 			PlayerPrefs.SetInt ("BestScore", score);
 
 		soundManager.PlayMusic_Game ("stop");
+		soundManager.PlayFX_GameWinStage_Morse ();
 		PlayerPrefs.SetInt ("Fuel", 1000);
 
 		SceneManager.LoadScene ("WinGame");

@@ -6,6 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class WinGameScript : MonoBehaviour {
 
+
+	Transform [] texts;
+	// 0 - Canvas
+	// 1 - Title
+	// 2 - ScoreText
+	// 3 - BestScoreText
+	// 4 - ImageNave
+
+
 	float timer = 0;
 
 	int score;
@@ -16,16 +25,23 @@ public class WinGameScript : MonoBehaviour {
 	Text bestScoreText;
 
 	void Awake () {
-		scoreText = transform.FindChild ("ScoreText").GetComponent<Text> ();
-		bestScoreText= transform.FindChild ("BestScoreText").GetComponent<Text> ();
+		texts = transform.GetComponentsInChildren<Transform> (); 
+
+		scoreText = texts[2].GetComponent<Text> ();
+		bestScoreText= texts[3].GetComponent<Text> ();
 
 		score = PlayerPrefs.GetInt ("Score", 0);
 		bestScore = PlayerPrefs.GetInt ("BestScore", 0);
 
-		if (bestScore == score )
+		if (bestScore == score)
 			bestScoreYou = " (You)";
 		else
 			bestScoreYou = "";
+
+
+		print ("Score: " + score);
+		print ("Best: " + bestScoreYou);
+		print ("String: " + bestScoreYou);
 
 		scoreText.text = "You Score - " + ConvertScore (score);
 		bestScoreText.text = "Best Score - " + ConvertScore (bestScore) + bestScoreYou;
@@ -34,7 +50,14 @@ public class WinGameScript : MonoBehaviour {
 	void Update () {
 		timer += Time.deltaTime;
 
-		if (timer > 4.0f)
+
+		if (timer > 4.5f) {
+			for (int i = 1; i < texts.Length; i++) {
+				texts [i].gameObject.SetActive (false);
+			}
+		}
+
+		if (timer > 6.0f)
 			SceneManager.LoadScene ("MainMenu");
 		
 	}
