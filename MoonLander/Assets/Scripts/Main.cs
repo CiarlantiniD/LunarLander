@@ -8,6 +8,9 @@ public class Main : MonoBehaviour {
 
 	public static Main instance = null;
 
+	// SoundManager
+	SoundManager soundManager;
+
 	// Levels
 	private LevelManager levelManager;
 	int actualLevel;
@@ -47,7 +50,7 @@ public class Main : MonoBehaviour {
 
 		naveScript = GameObject.Find ("Ship").GetComponent<NaveScript> ();
 		levelManager = GameObject.Find ("LevelsManager").GetComponent<LevelManager> ();
-
+		soundManager = GameObject.Find ("SoundManager").GetComponent<SoundManager> ();
 
 		// --- Esto es en el caso de un New Game
 		PlayerPrefs.SetInt ("Lifes", 3);
@@ -62,6 +65,7 @@ public class Main : MonoBehaviour {
 		actualLevel = PlayerPrefs.GetInt ("Level", 1);
 
 		levelManager.ChangeLevel (actualLevel);
+		soundManager.PlayMusic_Game ("play");
 	}
 
 
@@ -81,6 +85,7 @@ public class Main : MonoBehaviour {
 
 		if (!naveScript.GetStatusAlive () && !lander) {
 			timer += Time.deltaTime;
+			soundManager.PlayMusic_Game ("stop");
 
 			if (timer > 1f)
 				uiLose = true;
@@ -108,6 +113,8 @@ public class Main : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape)){
 			pauseStatus = naveScript.PauseStatus ();
 			uiPause = pauseStatus;
+
+			soundManager.PlayMusic_Game ("pause");
 		}
 	}
 		
@@ -140,6 +147,7 @@ public class Main : MonoBehaviour {
 
 		naveScript.SetReset ();
 		timer = 0;
+		soundManager.PlayMusic_Game ("play");
 	}
 
 
@@ -152,6 +160,8 @@ public class Main : MonoBehaviour {
 		if (score > bestScore) // Se puede mover a la scena Ganadora
 			PlayerPrefs.SetInt ("BestScore", score);
 
+		soundManager.PlayMusic_Game ("stop");
+
 		SceneManager.LoadScene ("WinGame");
 	}
 
@@ -160,6 +170,7 @@ public class Main : MonoBehaviour {
 		score = 0;
 		lifes = 3;
 		PlayerPrefs.SetInt ("Lifes", lifes);
+		soundManager.PlayMusic_Game ("stop");
 
 		SceneManager.LoadScene ("LoseGame");
 	}

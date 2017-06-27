@@ -12,6 +12,9 @@ public class NaveScript : MonoBehaviour {
 	float timer = 0f;
 	bool gravityEstable = false;
 
+	// SoundManager
+	SoundManager soundManager;
+
 	// Fuel
 	private int fuel;
 	private bool fuelEmpty;
@@ -50,6 +53,7 @@ public class NaveScript : MonoBehaviour {
 		startPosition = new Vector2(-9,8);
 		shipFire = transform.GetChild (0).gameObject;
 		explotion = transform.GetChild (1).GetComponent<ExplotionScript>();
+		soundManager = GameObject.Find ("SoundManager").GetComponent<SoundManager> ();
 		Reset ();
 	}
 
@@ -119,9 +123,11 @@ public class NaveScript : MonoBehaviour {
 			gravityEstable = true;
 			shipFire.SetActive (true);
 			fuel -= 1;
+			soundManager.PlayFX_GameShipFire (true);
 		} 
 		else {
 			shipFire.SetActive (false);
+			soundManager.PlayFX_GameShipFire (false);
 		}
 
 		if (fuelEmpty)

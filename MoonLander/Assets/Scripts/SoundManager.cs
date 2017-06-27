@@ -15,8 +15,8 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource fxMenuBack;
 	public AudioSource fxMenuStart;
 
-	int soundGame;
-	float volumenGame;
+	public AudioSource shipFire;
+
 	bool setMute = true;
 
 	void Awake ()
@@ -26,14 +26,9 @@ public class SoundManager : MonoBehaviour {
 		else if (instance != this)
 			Destroy (gameObject);
 
-		volumenGame = PlayerPrefs.GetInt ("VolumenGame", 100);
-		soundGame = PlayerPrefs.GetInt ("SoundGame", 1);
-
-		print ("volumenGame: " + volumenGame + "   soundGame: " + soundGame);
-
 		StopAllSounds ();
-		VolumenAllSounds(volumenGame);
-		MuteAllSounds (soundGame);
+		VolumenAllSounds(PlayerPrefs.GetInt ("VolumenGame", 100));
+		MuteAllSounds (PlayerPrefs.GetInt ("SoundGame", 1));
 
 		DontDestroyOnLoad (gameObject);
 	}
@@ -46,32 +41,25 @@ public class SoundManager : MonoBehaviour {
 		fxMenuSelect.Stop();
 		fxMenuBack.Stop();
 		fxMenuStart.Stop();
+
+		shipFire.Stop ();
 	}
 
 	public void VolumenAllSounds(float volumen){
 
-
-		if (volumen >= 100f) {
+		if (volumen >= 100f) 
 			volumen = 0.6f;
-			volumenGame = volumen;
-		} else if (volumen >= 75f) {
+		else if (volumen >= 75f)
 			volumen = 0.5f;
-			volumenGame = volumen;
-		} else if (volumen >= 50f) {
+		else if (volumen >= 50f)
 			volumen = 0.3f;
-			volumenGame = volumen;
-		} else if (volumen >= 25f) {
+		else if (volumen >= 25f)
 			volumen = 0.1f;
-			volumenGame = volumen;
-		}
-		else if (volumen >= 0f){
+		else if (volumen >= 0f)
 			volumen = 0f;
-		}
-		else{
+		else
 			volumen = 0.6f;
-			volumenGame = volumen;
-		}
-			
+		
 		if (setMute) {
 			musicMenu.volume = volumen;
 			musicGame.volume = volumen;
@@ -80,20 +68,22 @@ public class SoundManager : MonoBehaviour {
 			fxMenuSelect.volume = volumen;
 			fxMenuBack.volume = volumen;
 			fxMenuStart.volume = volumen;
+
+			shipFire.volume = volumen;
 		}
 
 	}
 
 	public void MuteAllSounds(int defMute){
 
-		/*if (defMute == 0) {
+		if (defMute == 0) {
 			VolumenAllSounds (0);
 			setMute = false;
-		}
-		else{
-			VolumenAllSounds (volumenGame);
+		} else {
 			setMute = true;
-		}*/
+			VolumenAllSounds (PlayerPrefs.GetInt ("VolumenGame", 100));
+		}
+
 	}
 
 
@@ -104,13 +94,43 @@ public class SoundManager : MonoBehaviour {
 			musicMenu.Play ();
 	}
 
-	public void PlayMusic_Game(){
-		if (musicMenu.isPlaying)
-			musicGame.Stop ();
-		else
+	public void PlayMusic_Game(string command){
+
+		if (command == "play")
 			musicGame.Play ();
+		else if (command == "stop")
+			musicGame.Stop ();
+		else if (command == "pause") {
+			if (musicGame.isPlaying)
+				musicGame.Pause ();
+			else
+				musicGame.Play ();
+		}
+		else
+			command = "ERROR";
+
+
+		if (command == "ERROR"){
+			if (musicMenu.isPlaying)
+				musicGame.Stop ();
+			else
+				musicGame.Play ();
+		}
+
+
+
 	}
 
+	public void PlayFX_GameShipFire(bool status){
+		if (status) {
+			if (!shipFire.isPlaying) {
+				shipFire.Play ();
+			}
+		}
+		else
+			shipFire.Stop ();
+
+	}
 
 
 	public void PlayFX_MenuMove(){fxMenuMove.Play ();}
