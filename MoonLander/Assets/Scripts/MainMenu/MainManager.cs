@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class MainManager : MonoBehaviour {
 
-	// Configuraciones Basicas del Juego 
 
+	SoundManager soundManager;
 
 	Transform mainMenu;
 	Transform optionsConf;
@@ -18,12 +18,16 @@ public class MainManager : MonoBehaviour {
 	void Awake () {
 		GameStart ();
 
+		soundManager = GameObject.Find ("SoundManager").GetComponent<SoundManager>();
+
 		mainMenu = transform.FindChild ("MainMenu");
 		optionsConf = transform.FindChild ("OptionsConf");
 		exitSure =  transform.FindChild ("ExitSure");
 
 		optionsConf.gameObject.SetActive (false);
 		exitSure.gameObject.SetActive (false);
+
+		soundManager.PlayMusic_Menu ();
 	}
 	
 
@@ -31,6 +35,7 @@ public class MainManager : MonoBehaviour {
 
 
 		if (actualMenu != 0) {
+
 
 			AllStateActiveFalse ();
 
@@ -74,8 +79,14 @@ public class MainManager : MonoBehaviour {
 
 	public void ChangeMenu(int menuchange){actualMenu = menuchange;}
 
-	public void GoToNewGame(){SceneManager.LoadScene ("PreGame");} // se tiene que configurar de diferente manera al playerPreference
+	public void GoToNewGame(){ // se tiene que configurar de diferente manera al playerPreference
+		soundManager.PlayMusic_Menu ();
+		SceneManager.LoadScene ("PreGame");
+	} 
 
-	public void GoToContinueGame(){SceneManager.LoadScene ("PreGame");}
+	public void GoToContinueGame(){
+		soundManager.PlayMusic_Menu ();
+		SceneManager.LoadScene ("PreGame");
+	}
 
 }

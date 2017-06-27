@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour {
 
 	MainManager mainManager;
+	SoundManager soundManager;
 
 	// Save Configuration
 	private int haveSave = 1; // CONFIGURATION REVISAR
@@ -22,6 +23,7 @@ public class MainMenu : MonoBehaviour {
 
 	void Awake () {
 		mainManager = transform.GetComponentInParent<MainManager> ();
+		soundManager = GameObject.Find ("SoundManager").GetComponent<SoundManager> ();
 
 		optionsText = new Text[4];
 
@@ -50,9 +52,11 @@ public class MainMenu : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.UpArrow) && optionSlect >= optionSlectMaxArgument) {
 			optionSlect -= 1;
 			TranforText ();
+			soundManager.PlayFX_MenuMove ();
 		} else if (Input.GetKeyDown (KeyCode.DownArrow) && optionSlect < maxOption) {
 			optionSlect += 1;
 			TranforText ();
+			soundManager.PlayFX_MenuMove ();
 		}
 
 
@@ -60,19 +64,24 @@ public class MainMenu : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			switch (optionSlect) {
 			case 0:
+				soundManager.PlayFX_MenuStart ();
 				mainManager.GoToContinueGame();
 				break;
 			case 1:
+				soundManager.PlayFX_MenuStart ();
 				PlayerPrefs.SetInt ("HaveSave", 0);
 				mainManager.GoToNewGame ();
 				break;
 			case 2:
+				soundManager.PlayFX_MenuSelect ();
 				mainManager.ChangeMenu (2);
 				break;
 			case 3:
+				soundManager.PlayFX_MenuSelect ();
 				mainManager.ChangeMenu (3);
 				break;
 			default:
+				soundManager.PlayFX_MenuSelect ();
 				mainManager.ChangeMenu (3);
 				break;
 			}

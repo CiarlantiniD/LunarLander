@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class OptionsConfScript : MonoBehaviour {
 
 	MainManager mainManager;
+	SoundManager soundManager;
 
 	// Valores del Menu
 	private int setVolumen = 0;
@@ -20,6 +21,7 @@ public class OptionsConfScript : MonoBehaviour {
 
 	void Awake () {
 		mainManager = transform.GetComponentInParent<MainManager> ();
+		soundManager = GameObject.Find ("SoundManager").GetComponent<SoundManager> ();
 
 		optionsText = new Text[4];
 
@@ -45,9 +47,11 @@ public class OptionsConfScript : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.UpArrow) && optionSlect >= 1) {
 			optionSlect -= 1;
 			TranforText ();
+			soundManager.PlayFX_MenuMove ();
 		} else if (Input.GetKeyDown (KeyCode.DownArrow) && optionSlect < maxOption) {
 			optionSlect += 1;
 			TranforText ();
+			soundManager.PlayFX_MenuMove ();
 		}
 
 
@@ -55,19 +59,21 @@ public class OptionsConfScript : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			switch (optionSlect) {
 			case 0:
+				soundManager.PlayFX_MenuSelect ();
 				print ("Cambiando Sonido");
 				ConfSoundOnOff ();
 				break;
 			case 1:
+				soundManager.PlayFX_MenuSelect ();
 				print ("Cambiando Volumen");
 				ConfVolumen ();
 				break;
 			case 2:
-				print ("Volver a atras");
+				soundManager.PlayFX_MenuBack ();
 				mainManager.ChangeMenu (1);
 				break;
 			default:
-				print ("Volver a atras");
+				soundManager.PlayFX_MenuBack ();
 				mainManager.ChangeMenu (1);
 				break;
 			}
@@ -78,9 +84,11 @@ public class OptionsConfScript : MonoBehaviour {
 		if (PlayerPrefs.GetInt ("SoundGame",1) == 1) {
 			PlayerPrefs.SetInt ("SoundGame", 0);
 			optionsText [0].text = "Sound OFF";
+			soundManager.MuteAllSounds (0);
 		} else {
 			PlayerPrefs.SetInt ("SoundGame", 1);
 			optionsText [0].text = "Sound ON";
+			soundManager.MuteAllSounds (1);
 		}
 	}
 
@@ -89,26 +97,31 @@ public class OptionsConfScript : MonoBehaviour {
 		case 0:
 			PlayerPrefs.SetInt ("VolumenGame", 25);
 			optionsText [1].text = "Volumen - 25";
+			soundManager.VolumenAllSounds (25);
 			setVolumen += 1;
 			break;
 		case 1:
 			PlayerPrefs.SetInt ("VolumenGame", 50);
 			optionsText [1].text = "Volumen - 50";
+			soundManager.VolumenAllSounds (50);
 			setVolumen += 1;
 			break;
 		case 2:
 			PlayerPrefs.SetInt ("VolumenGame", 75);
 			optionsText [1].text = "Volumen - 75";
+			soundManager.VolumenAllSounds (75);
 			setVolumen += 1;
 			break;
 		case 3:
 			PlayerPrefs.SetInt ("VolumenGame", 100);
 			optionsText [1].text = "Volumen - 100";
+			soundManager.VolumenAllSounds (100);
 			setVolumen = 0;
 			break;
 		default:
 			PlayerPrefs.SetInt ("VolumenGame", 100);
 			optionsText [1].text = "Volumen - 100";
+			soundManager.VolumenAllSounds (100);
 			setVolumen = 0;
 			break;
 		}

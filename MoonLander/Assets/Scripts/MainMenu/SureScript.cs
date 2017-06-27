@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SureScript : MonoBehaviour {
 
 	MainManager mainManager;
+	SoundManager soundManager;
 
 	private int optionSlect = 1;
 	private int maxOption = 2;
@@ -17,6 +18,7 @@ public class SureScript : MonoBehaviour {
 
 	void Awake () {
 		mainManager = transform.GetComponentInParent<MainManager> ();
+		soundManager = GameObject.Find ("SoundManager").GetComponent<SoundManager> ();
 
 		optionsText = new Text[3];
 
@@ -42,9 +44,11 @@ public class SureScript : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.UpArrow) && optionSlect >= 2) {
 			optionSlect -= 1;
 			TranforText ();
+			soundManager.PlayFX_MenuMove ();
 		} else if (Input.GetKeyDown (KeyCode.DownArrow) && optionSlect < maxOption) {
 			optionSlect += 1;
 			TranforText ();
+			soundManager.PlayFX_MenuMove ();
 		}
 
 
@@ -52,6 +56,7 @@ public class SureScript : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			switch (optionSlect) {
 			case 1:
+				soundManager.PlayFX_MenuBack ();
 				mainManager.ChangeMenu (1);
 				break;
 			case 2:
@@ -59,6 +64,7 @@ public class SureScript : MonoBehaviour {
 				Application.Quit();
 				break;
 			default:
+				soundManager.PlayFX_MenuBack ();
 				mainManager.ChangeMenu (1);
 				break;
 			}
