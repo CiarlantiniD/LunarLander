@@ -165,6 +165,54 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 87623080}
+--- !u!1 &175722548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 175722550}
+  - component: {fileID: 175722549}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &175722549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 175722548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2696f8f95a7470d81e0ecf00b78c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fxClips:
+  - {fileID: 8300000, guid: f05ccce87b33c4986b75fc2213552084, type: 3}
+  - {fileID: 8300000, guid: b11e447bf6477451fa9dfb20d00bf74c, type: 3}
+  - {fileID: 8300000, guid: 8d6445266633e4d3f9adca3f3555bab4, type: 3}
+  - {fileID: 8300000, guid: d2f57e8f8fc56489f83ba333e1efad15, type: 3}
+  musicClips:
+  - {fileID: 8300000, guid: 22093f13dbceb4f7f821de0bd2b4724c, type: 3}
+  - {fileID: 8300000, guid: 8ff1b53c47cbf408289b7f23f8bb0a9c, type: 3}
+--- !u!4 &175722550
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 175722548}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.4210715, y: 8.364784, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &177128597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,7 +1220,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1140532637
+  randomSeed: 241132423
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3850,7 +3898,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1667710629}
   - component: {fileID: 1667710628}
-  - component: {fileID: 1667710627}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3858,24 +3905,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1667710627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1667710626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &1667710628
 MonoBehaviour:
   m_ObjectHideFlags: 0
