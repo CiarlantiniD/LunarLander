@@ -32,16 +32,12 @@ public class WinGameScript : MonoBehaviour {
 
 		score = PlayerPrefs.GetInt ("Score");
 		bestScore = PlayerPrefs.GetInt ("BestScore");
+		PlayerPrefs.SetInt ("Score", 0);
 
-		if (bestScore == score)
+		if (score > bestScore)
 			bestScoreYou = " (You)";
 		else
 			bestScoreYou = "";
-
-
-		print ("Score: " + score);
-		print ("Best: " + bestScoreYou);
-		print ("String: " + bestScoreYou);
 
 		scoreText.text = "You Score - " + ConvertScore (score);
 		bestScoreText.text = "Best Score - " + ConvertScore (bestScore) + bestScoreYou;
@@ -66,21 +62,21 @@ public class WinGameScript : MonoBehaviour {
 		if (scoreToConvert == 0)
 			return "00000000";
 		if (scoreToConvert < 10)
-			return "0000000" + score.ToString();
+			return "0000000" + scoreToConvert.ToString();
 		else if (scoreToConvert < 100)
-			return "000000" + score.ToString();
+			return "000000" + scoreToConvert.ToString();
 		else if (scoreToConvert < 1000)
-			return "00000" + score.ToString();
+			return "00000" + scoreToConvert.ToString();
 		else if (scoreToConvert < 10000)
-			return "0000" + score.ToString();
+			return "0000" + scoreToConvert.ToString();
 		else if (scoreToConvert < 100000)
-			return "000" + score.ToString();
+			return "000" + scoreToConvert.ToString();
 		else if (scoreToConvert < 1000000)
-			return "00" + score.ToString();
+			return "00" + scoreToConvert.ToString();
 		else if (scoreToConvert < 10000000)
-			return "0" + score.ToString();
+			return "0" + scoreToConvert.ToString();
 		else if (scoreToConvert < 100000000)
-			return score.ToString();
+			return scoreToConvert.ToString();
 		else
 			return "99999999";
 	}

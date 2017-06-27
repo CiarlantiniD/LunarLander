@@ -23,6 +23,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource morseWinStage;
 
 	bool setMute = true;
+	bool forceNotExplotion = true;
 
 	void Awake ()
 	{
@@ -153,7 +154,10 @@ public class SoundManager : MonoBehaviour {
 	}
 
 
-	public void PlayFX_GameShipExplotion(){explotionShip.Play ();}
+	public void PlayFX_GameShipExplotion(){
+		if (forceNotExplotion)
+			explotionShip.Play ();
+	}
 
 	public void PlayFX_GameShipLander(){landerShip.Play ();}
 
@@ -172,6 +176,11 @@ public class SoundManager : MonoBehaviour {
 	public void PlayFX_MenuStart(){fxMenuStart.Play ();}
 
 
-
+	public void ForceNotExplotion(bool setNotExplotion){
+		if (!setNotExplotion)
+			forceNotExplotion = false;
+		else
+			forceNotExplotion = true;
+	}
 
 }

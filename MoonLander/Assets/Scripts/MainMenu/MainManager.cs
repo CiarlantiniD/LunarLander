@@ -77,7 +77,11 @@ public class MainManager : MonoBehaviour {
 			PlayerPrefs.SetInt ("Lifes", 2);
 			PlayerPrefs.SetInt ("Fuel", 1000);
 			PlayerPrefs.SetInt ("Level", 1);
+			PlayerPrefs.SetFloat ("Time", 0);
+			PlayerPrefs.SetInt ("Continue", 0);
 		}
+
+		PlayerPrefs.SetInt ("HaveSave", 1);
 	} 
 
 	public void ChangeMenu(int menuchange){actualMenu = menuchange;}

@@ -32,7 +32,7 @@ public class MainMenu : MonoBehaviour {
 		optionsText[2] =transform.GetChild(2).GetComponent<Text>();
 		optionsText[3] =transform.GetChild(3).GetComponent<Text>();
 
-		haveSave = PlayerPrefs.GetInt ("HaveSave", 0);
+		haveSave =PlayerPrefs.GetInt ("Continue", 0);
 		HaveSave();
 		TranforText ();
 	}
@@ -72,6 +72,8 @@ public class MainMenu : MonoBehaviour {
 				PlayerPrefs.SetInt ("Lifes", 2);
 				PlayerPrefs.SetInt ("Fuel", 1000);
 				PlayerPrefs.SetInt ("Level", 1);
+				PlayerPrefs.SetFloat ("Time", 0);
+				PlayerPrefs.SetInt ("Continue", 0);
 				soundManager.PlayFX_MenuStart ();
 				mainManager.GoToNewGame ();
 				break;
@@ -94,13 +96,11 @@ public class MainMenu : MonoBehaviour {
 
 	void HaveSave(){
 		if (haveSave == 1) {
-			print ("Tengo Save");
 			intTranforText = 0;
 			optionSlectMaxArgument = 1;
 			optionSlect = 0;
 		}
 		else {
-			print ("No tengo Save");
 			intTranforText = 1;
 			optionSlectMaxArgument = 2;
 			optionSlect = 1;

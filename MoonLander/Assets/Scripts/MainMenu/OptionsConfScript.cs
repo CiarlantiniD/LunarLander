@@ -30,6 +30,7 @@ public class OptionsConfScript : MonoBehaviour {
 		optionsText[2] =transform.GetChild(2).GetComponent<Text>();
 
 		TranforText ();
+		StartConfiguration ();
 	}
 
 	void TranforText(){
@@ -60,12 +61,10 @@ public class OptionsConfScript : MonoBehaviour {
 			switch (optionSlect) {
 			case 0:
 				soundManager.PlayFX_MenuSelect ();
-				print ("Cambiando Sonido");
 				ConfSoundOnOff ();
 				break;
 			case 1:
 				soundManager.PlayFX_MenuSelect ();
-				print ("Cambiando Volumen");
 				ConfVolumen ();
 				break;
 			case 2:
@@ -124,6 +123,30 @@ public class OptionsConfScript : MonoBehaviour {
 			soundManager.VolumenAllSounds (100);
 			setVolumen = 0;
 			break;
+		}
+	}
+
+	private void StartConfiguration(){
+
+		if (PlayerPrefs.GetInt ("VolumenGame") == 100) {
+			optionsText [1].text = "Volumen - 100";
+		}
+		else if (PlayerPrefs.GetInt ("VolumenGame") == 75) {
+			optionsText [1].text = "Volumen - 75";
+		}
+		else if (PlayerPrefs.GetInt ("VolumenGame") == 50) {
+			optionsText [1].text = "Volumen - 50";
+		}
+		else if (PlayerPrefs.GetInt ("VolumenGame") == 25) {
+			optionsText [1].text = "Volumen - 25";
+		}
+
+
+		if (PlayerPrefs.GetInt ("SoundGame") == 1) {
+			optionsText [0].text = "Sound ON";
+		} 
+		else if (PlayerPrefs.GetInt ("SoundGame") == 0){
+			optionsText [0].text = "Sound OFF";
 		}
 	}
 }

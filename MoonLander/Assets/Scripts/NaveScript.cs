@@ -154,13 +154,6 @@ public class NaveScript : MonoBehaviour {
 			else if (tempNameMaultiBase == "BaseMult_x5")
 				multiScore = 5;
 		}
-			
-
-
-
-
-
-		print ("Spot: " + goodSpotLander + "  Multi:" + multiScore); // BOOORRARRRRR
 	}
 
 	void OnTriggerExit2D(Collider2D triggerColl){
@@ -169,9 +162,6 @@ public class NaveScript : MonoBehaviour {
 			goodSpotLander = false;
 			multiScore = 1;
 		}
-			
-
-		print ("Spot: " + goodSpotLander + "  Multi:" + multiScore);
 	}
 
 
@@ -190,10 +180,7 @@ public class NaveScript : MonoBehaviour {
 	void OnBecameInvisible(){Destroid();}
 
 
-
-
 	void Destroid(){
-		// + Hombre saliendo al espacio (plus)
 		alive = false;
 		StopMove ();
 		verticalVel = 0f;

@@ -56,9 +56,11 @@ public class Main : MonoBehaviour {
 		score = PlayerPrefs.GetInt ("Score");
 		bestScore = PlayerPrefs.GetInt ("BestScore");
 		actualLevel = PlayerPrefs.GetInt ("Level");
+		timeGame = PlayerPrefs.GetFloat ("Time", 0);
 
 		levelManager.ChangeLevel (actualLevel);
 		soundManager.PlayMusic_Game ("play");
+		soundManager.ForceNotExplotion (true);
 	}
 
 
@@ -119,7 +121,8 @@ public class Main : MonoBehaviour {
 		PlayerPrefs.SetInt ("Lifes", lifes);
 		PlayerPrefs.SetInt ("Score", score);
 		PlayerPrefs.SetInt ("Fuel", naveFuel);
-		PlayerPrefs.SetInt ("HaveSave", 1);
+		PlayerPrefs.SetFloat ("Time", 0);
+		PlayerPrefs.SetInt ("Continue", 1);
 		timeGame = 0;
 
 		actualLevel += 1;
@@ -132,15 +135,14 @@ public class Main : MonoBehaviour {
 			naveScript.SetReset ();
 			timer = 0;
 		}
-	
-
 	}
 
 	void LoseStage(){
 		lifes -= 1;
 		PlayerPrefs.SetInt ("Lifes", lifes);
 		PlayerPrefs.SetInt ("Fuel", 1000);
-		PlayerPrefs.SetInt ("HaveSave", 1);
+		PlayerPrefs.SetFloat ("Time", timeGame);
+		PlayerPrefs.SetInt ("Continue", 1);
 
 		if (lifes < 0)
 			LoseGame ();
@@ -168,9 +170,11 @@ public class Main : MonoBehaviour {
 
 		soundManager.PlayMusic_Game ("stop");
 		soundManager.PlayFX_GameWinStage_Morse ();
+		soundManager.ForceNotExplotion (false);
 
 		PlayerPrefs.SetInt ("Fuel", 1000);
-		PlayerPrefs.SetInt ("Score", 0);
+		PlayerPrefs.SetInt ("Score", score);
+		PlayerPrefs.SetFloat ("Time", 0);
 
 		SceneManager.LoadScene ("WinGame");
 	}
@@ -182,6 +186,7 @@ public class Main : MonoBehaviour {
 
 		PlayerPrefs.SetInt ("Lifes", 2);
 		PlayerPrefs.SetInt ("Score", 0);
+		PlayerPrefs.SetFloat ("Time", 0);
 
 		soundManager.PlayMusic_Game ("stop");
 
@@ -191,7 +196,7 @@ public class Main : MonoBehaviour {
 	private void ResetLevelCount(){
 		actualLevel = 1;
 		PlayerPrefs.SetInt ("Level", actualLevel);
-		PlayerPrefs.SetInt ("HaveSave", 0);
+		PlayerPrefs.SetInt ("Continue", 0);
 	}
 	// -----------------------------------------------------
 
