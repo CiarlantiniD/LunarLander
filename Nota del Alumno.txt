@@ -1,0 +1,13 @@
+Resoluciones Probadas:
+
+-1600x800 (Predilecta)
+-1920x1080
+-1080x720
+
+Ratios Probados:
+
+-5:4
+-4:3
+-3:2
+-16:10
+-16:9 (Predilecta)
