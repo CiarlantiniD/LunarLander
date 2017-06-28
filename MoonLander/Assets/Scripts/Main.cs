@@ -30,9 +30,10 @@ public class Main : MonoBehaviour {
 	private bool uiWin = false;
 	private bool uiLose = false;
 	private bool uiPause = false;
+    private bool uiComeBack = false;
 
-	// Pause
-	private bool pauseStatus;
+    // Pause
+    private bool pauseStatus;
 
 	// Timer
 	float timer = 0;
@@ -94,9 +95,19 @@ public class Main : MonoBehaviour {
 		}
 
 
+        if (pauseStatus || !naveScript.GetStatusAlive()) {
+            uiComeBack = false;
+        }
+        else if(naveScript.GetvpPosition().x < 0.15 || naveScript.GetvpPosition().x > 0.85 || 
+            naveScript.GetvpPosition().y < 0.1 || !naveScript.GetStatusAlive()){
+            uiComeBack = true;
+        }
+        else
+            uiComeBack = false;
 
-		// ------ Pause -------
-		if (Input.GetKeyDown(KeyCode.Escape)){
+
+        // ------ Pause -------
+        if (Input.GetKeyDown(KeyCode.Escape)){
 			pauseStatus = naveScript.PauseStatus ();
 			uiPause = pauseStatus;
 
@@ -200,8 +211,9 @@ public class Main : MonoBehaviour {
 	public bool GetUIWin(){return uiWin;}
 	public bool GetUILose(){return uiLose;}
 	public bool GetUIPause(){return uiPause;}
+    public bool GetUIComeBack(){return uiComeBack;}
 
-	public int GetNaveFuel(){return naveFuel;}
+    public int GetNaveFuel(){return naveFuel;}
 	public float GetNaveVerticalVel(){return naveVerticalVel;}
 
 	public float GetTime(){return timeGame;}

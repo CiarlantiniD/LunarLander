@@ -13,8 +13,9 @@ public class UImanager : MonoBehaviour {
 	Transform winText;
 	Transform loseText;
 	Transform pauseText;
+    Transform comeBackText;
 
-	public int lifes;
+    public int lifes;
 	public int score;
 
 	public float timeGame;
@@ -30,11 +31,14 @@ public class UImanager : MonoBehaviour {
 		winText = transform.FindChild ("WinText");
 		loseText = transform.FindChild ("LoseText");
 		pauseText = transform.FindChild ("PauseText");
-		winText.gameObject.SetActive (false);
+        comeBackText = transform.FindChild("ComeBack");
+
+        winText.gameObject.SetActive (false);
 		loseText.gameObject.SetActive (false);
 		pauseText.gameObject.SetActive (false);
+        comeBackText.gameObject.SetActive(false);
 
-	}
+    }
 		
 	void Update () {
 
@@ -64,6 +68,11 @@ public class UImanager : MonoBehaviour {
 			pauseText.gameObject.SetActive (true);
 		else
 			pauseText.gameObject.SetActive (false);
-	}
+
+        if (mainScript.GetUIComeBack())
+            comeBackText.gameObject.SetActive(true);
+        else
+            comeBackText.gameObject.SetActive(false);
+    }
 }
  

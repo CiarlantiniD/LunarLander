@@ -9,6 +9,8 @@ public class NaveScript : MonoBehaviour {
 	SpriteRenderer sr;
 	RaycastHit2D hit;
 	Vector2 startPosition;
+    Camera cameraShip;
+    Vector3 vpPosition;
 
 	float timer = 0f;
 	bool gravityEstable = false;
@@ -46,6 +48,7 @@ public class NaveScript : MonoBehaviour {
 	void Awake () {
         rb = GetComponent<Rigidbody2D>(); 
 		sr = GetComponent<SpriteRenderer> ();
+        cameraShip = GameObject.Find("Main Camera").GetComponent<Camera>();
 		startPosition = new Vector2(-9,8);
 		shipFire = transform.GetChild (0).gameObject;
 		explotion = transform.GetChild (1).GetComponent<ExplotionScript>();
@@ -101,12 +104,15 @@ public class NaveScript : MonoBehaviour {
 			//pr	int (distance);
 
 
-			// --- Prueba Vertical Velocity ---
+			// --- Vertical Velocity ---
 			verticalVel = rb.velocity.y * -100;
 			if (verticalVel < 0)
-				verticalVel = verticalVel * -1;	
-		}
-	}
+				verticalVel = verticalVel * -1;
+
+            // --- Position in Camera ---
+            vpPosition = cameraShip.WorldToViewportPoint(transform.position);
+        }
+    }
 
 
     void FixedUpdate()
@@ -216,4 +222,6 @@ public class NaveScript : MonoBehaviour {
 	public bool Getlander(){return lander;}
 
 	public int GetBaseMulti(){return multiScore;}
+
+    public Vector3 GetvpPosition() { return vpPosition; }
 }

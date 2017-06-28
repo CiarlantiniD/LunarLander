@@ -42,7 +42,7 @@ public class SoundManager : MonoBehaviour {
 
 		fxMenuMove.Stop(); 
 		fxMenuSelect.Stop();
-		fxMenuBack.Stop();
+		fxMenuBack.Stop(); //sacar PLay en awake
 		fxMenuStart.Stop();
 
 		shipFire.Stop ();
@@ -139,8 +139,8 @@ public class SoundManager : MonoBehaviour {
 	}
 		
 	public void PlayFX_GameShipFuelAlarm(){
-		if (!fuelAlarm.isPlaying)
-			fuelAlarm.Play ();
+        if (!fuelAlarm.isPlaying)
+            fuelAlarm.Play();
 	}
 		
 	public void PlayFX_GameShipExplotion(){
