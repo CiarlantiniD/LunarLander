@@ -160,7 +160,9 @@ public class Main : MonoBehaviour {
 
 	void WinGame(){
 		ResetLevelCount ();
-		score += 100000; // Bonus Win
+
+		if (lifes >= 2)  // Bonus Win
+			score += 100000;
 
 		if (score > bestScore)
 			PlayerPrefs.SetInt ("BestScore", score);
