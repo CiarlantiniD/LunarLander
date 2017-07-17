@@ -29,14 +29,14 @@ public class SoundManager : MonoBehaviour {
 		else if (instance != this)
 			Destroy (gameObject);
 
-		StopAllSounds ();
+		//StopAllSounds ();
 		VolumenAllSounds(PlayerPrefs.GetInt ("VolumenGame", 100));
 		MuteAllSounds (PlayerPrefs.GetInt ("SoundGame", 1));
 
 		DontDestroyOnLoad (gameObject);
 	}
 
-	private void StopAllSounds(){
+	/*private void StopAllSounds(){
 		musicMenu.Stop();
 		musicGame.Stop();
 
@@ -51,7 +51,7 @@ public class SoundManager : MonoBehaviour {
 		landerShip.Stop ();
 
 		morseWinStage.Stop ();
-	}
+	}*/
 
 	public void VolumenAllSounds(float volumen){
 
