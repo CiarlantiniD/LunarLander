@@ -67,6 +67,12 @@ public class Main : MonoBehaviour {
 		if (!pauseStatus && naveScript.GetStatusAlive ())
 			timeGame += Time.deltaTime;
 
+		if (timeGame > 600) {
+			naveScript.TimeOut ();
+			lifes = 0;
+		}
+			
+
 		naveFuel = naveScript.GetFuel ();
 		naveVerticalVel = naveScript.GetVerticalVelocity ();
 		lander = naveScript.Getlander ();

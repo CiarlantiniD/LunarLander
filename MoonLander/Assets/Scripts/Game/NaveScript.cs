@@ -170,10 +170,6 @@ public class NaveScript : MonoBehaviour {
 			Lander();
 	}
 
-	public void OnBecameInvisible(){ // NO esta funcionando
-		Destroid();
-	}
-
 	void Destroid(){
 		alive = false;
 		StopMove ();
@@ -224,4 +220,9 @@ public class NaveScript : MonoBehaviour {
 	public int GetBaseMulti(){return multiScore;}
 
     public Vector3 GetvpPosition() { return vpPosition; }
+
+	public void TimeOut(){
+		if (alive)
+			Destroid ();
+	}
 }
