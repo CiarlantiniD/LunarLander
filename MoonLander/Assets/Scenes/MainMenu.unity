@@ -1593,7 +1593,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Create by Dar\xEDo CiarIantini - 2017 | v1.0\nAtari, Inc. - 1979 / Music
+  m_Text: "Create by Dar\xEDo CiarIantini - 2017 | v1.1\nAtari, Inc. - 1979 / Music
     by Jonn Serrie & Epicurus\nAffinity Photo / WavePad Audio Editor"
 --- !u!222 &673875833
 CanvasRenderer:

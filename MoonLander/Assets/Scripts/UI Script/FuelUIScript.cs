@@ -23,10 +23,9 @@ public class FuelUIScript : MonoBehaviour {
             fuelCount.text = "Fuel   Empty";
             fuelCount.enabled = true;
         }
-			
-        else
-        {
-            fuelCount.text = "Fuel   " + naveFuel.ToString();
+        else{
+            
+			fuelCount.text = "Fuel   " + naveFuel.ToString();
 
             if (naveFuel < 200 && naveFuel > 0){
 

@@ -64,15 +64,17 @@ public class UImanager : MonoBehaviour {
 		else
 			loseText.gameObject.SetActive (false);
 
-		if (mainScript.GetUIPause ())
-			pauseText.gameObject.SetActive (true);
-		else
-			pauseText.gameObject.SetActive (false);
-
         if (mainScript.GetUIComeBack())
             comeBackText.gameObject.SetActive(true);
         else
             comeBackText.gameObject.SetActive(false);
+
+
+		// --- Pause ---
+		if (mainScript.GetUIPause ())
+			pauseText.gameObject.SetActive (true);
+		else
+			pauseText.gameObject.SetActive (false);
     }
 }
  

@@ -58,7 +58,6 @@ public class SureScript : MonoBehaviour {
 				mainManager.ChangeMenu (1);
 				break;
 			case 2:
-				print ("Quitar Juego");
 				Application.Quit();
 				break;
 			default:
