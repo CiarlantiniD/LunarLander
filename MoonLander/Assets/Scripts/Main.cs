@@ -33,7 +33,8 @@ public class Main : MonoBehaviour {
     private bool uiComeBack = false;
 
     // Pause
-    private bool pauseStatus;
+	private bool pauseStatus;
+	private bool pauseSetOff = false;
 
 	// Timer
 	float timer = 0;
@@ -112,11 +113,12 @@ public class Main : MonoBehaviour {
 
 
         // ------ Pause -------
-		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return)){
-			pauseStatus = naveScript.PauseStatus ();
-			uiPause = pauseStatus;
-
-			soundManager.PlayMusic_Game ("pause");
+		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return)) {
+			if (!pauseStatus || pauseSetOff) {
+				pauseSetOff = false;
+				SetPause ();
+			}
+				
 		}
 	}
 
@@ -227,4 +229,20 @@ public class Main : MonoBehaviour {
 
 	public bool GetPauseStatus(){return pauseStatus;}
 	public bool GetStatusNaveAlive() {return naveScript.GetStatusAlive ();}
+
+
+	public void ReturnToGame(bool selection){
+		if (!selection) {
+			soundManager.PlayMusic_Game ("stop");
+			SceneManager.LoadScene ("MainMenu");
+		}
+		else
+			pauseSetOff = true;
+	}
+
+	private void SetPause(){
+		pauseStatus = naveScript.PauseStatus ();
+		uiPause = pauseStatus;
+		soundManager.PlayMusic_Game ("pause");
+	}
 }

@@ -6,6 +6,7 @@ public class UImanager : MonoBehaviour {
 	public static UImanager instance = null; 
 
 	private Main mainScript;
+	private PauseUIScript pauseUI;
 
 	public int naveFuel;
 	public float naveVerticalVel;
@@ -27,15 +28,14 @@ public class UImanager : MonoBehaviour {
 			Destroy (gameObject);
 		
 		mainScript = GameObject.Find ("Main").GetComponent<Main> ();
+		pauseUI = GetComponent<PauseUIScript> ();
 
 		winText = transform.FindChild ("WinText");
 		loseText = transform.FindChild ("LoseText");
-		pauseText = transform.FindChild ("PauseText");
         comeBackText = transform.FindChild("ComeBack");
 
         winText.gameObject.SetActive (false);
 		loseText.gameObject.SetActive (false);
-		pauseText.gameObject.SetActive (false);
         comeBackText.gameObject.SetActive(false);
 
     }
@@ -72,9 +72,9 @@ public class UImanager : MonoBehaviour {
 
 		// --- Pause ---
 		if (mainScript.GetUIPause ())
-			pauseText.gameObject.SetActive (true);
+			pauseUI.SetUIOnOff (true);
 		else
-			pauseText.gameObject.SetActive (false);
+			pauseUI.SetUIOnOff (false);
     }
 }
  
