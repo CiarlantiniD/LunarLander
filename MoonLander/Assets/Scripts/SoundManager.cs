@@ -29,29 +29,11 @@ public class SoundManager : MonoBehaviour {
 		else if (instance != this)
 			Destroy (gameObject);
 
-		//StopAllSounds ();
 		VolumenAllSounds(PlayerPrefs.GetInt ("VolumenGame", 100));
 		MuteAllSounds (PlayerPrefs.GetInt ("SoundGame", 1));
 
 		DontDestroyOnLoad (gameObject);
 	}
-
-	/*private void StopAllSounds(){
-		musicMenu.Stop();
-		musicGame.Stop();
-
-		fxMenuMove.Stop(); 
-		fxMenuSelect.Stop();
-		fxMenuBack.Stop(); //sacar PLay en awake
-		fxMenuStart.Stop();
-
-		shipFire.Stop ();
-		explotionShip.Stop ();
-		fuelAlarm.Stop ();
-		landerShip.Stop ();
-
-		morseWinStage.Stop ();
-	}*/
 
 	public void VolumenAllSounds(float volumen){
 
@@ -69,20 +51,7 @@ public class SoundManager : MonoBehaviour {
 			volumen = 0.6f;
 		
 		if (setMute) {
-			musicMenu.volume = volumen;
-			musicGame.volume = volumen;
-
-			fxMenuMove.volume = volumen;
-			fxMenuSelect.volume = volumen;
-			fxMenuBack.volume = volumen;
-			fxMenuStart.volume = volumen;
-
-			shipFire.volume = volumen;
-			explotionShip.volume = volumen;
-			fuelAlarm.volume = volumen;
-			landerShip.volume = volumen;
-
-			morseWinStage.volume = volumen;
+			AudioListener.volume = volumen;
 		}
 
 	}
