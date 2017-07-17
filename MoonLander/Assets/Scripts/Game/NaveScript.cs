@@ -170,9 +170,9 @@ public class NaveScript : MonoBehaviour {
 		
 	void OnCollisionEnter2D(Collision2D coll){
 
-		if (coll.relativeVelocity.magnitude > 0.6f)
+		if (coll.relativeVelocity.magnitude > 0.20f)
 			Destroid ();
-		else if (transform.rotation.z > 0.25f || transform.rotation.z < -0.25f)
+		else if (transform.rotation.z > 0.12f || transform.rotation.z < -0.12f)
 			Destroid ();
 		else if (!goodSpotLander)
 			Destroid ();
