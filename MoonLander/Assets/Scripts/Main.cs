@@ -102,12 +102,11 @@ public class Main : MonoBehaviour {
 		}
 
 
-        if (pauseStatus || !naveScript.GetStatusAlive()) {
+		// --- UI "Come Back!" ---
+		if (pauseStatus || !naveScript.GetStatusAlive())
             uiComeBack = false;
-        }
-        else if(naveScript.GetvpPosition().x < 0.05 || naveScript.GetvpPosition().x > 0.95 || naveScript.GetvpPosition().y > 0.95 || !naveScript.GetStatusAlive()){
+        else if(naveScript.GetvpPosition().x < 0.05 || naveScript.GetvpPosition().x > 0.95 || naveScript.GetvpPosition().y > 0.95 || !naveScript.GetStatusAlive())
             uiComeBack = true;
-        }
         else
             uiComeBack = false;
 

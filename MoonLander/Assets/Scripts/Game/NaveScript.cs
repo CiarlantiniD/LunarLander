@@ -40,6 +40,9 @@ public class NaveScript : MonoBehaviour {
 	// Explotion
 	ExplotionScript explotion;
 
+	// Help Force
+	private bool helpForce;
+
 	// Pause
 	bool pause;
 	Vector3 velocitySave;
@@ -111,6 +114,9 @@ public class NaveScript : MonoBehaviour {
 
             // --- Position in Camera ---
             vpPosition = cameraShip.WorldToViewportPoint(transform.position);
+
+			if (vpPosition.x < -0.1f || vpPosition.x > 1.1f || vpPosition.y > 1.1f)
+				NaveOutSpace ();
         }
     }
 
@@ -131,8 +137,12 @@ public class NaveScript : MonoBehaviour {
 
 		if (fuelEmpty)
 			rb.AddForce (Vector2.down * 0.1f);
+
+		if (rb.velocity.y == 0 && rb.velocity.x == 0)
+			rb.AddRelativeForce (Vector2.down * 0.1f);
     }
-		
+
+
 	void OnTriggerEnter2D(Collider2D triggerColl){
 
 		if (triggerColl.gameObject.tag == "GoodSpot") {
@@ -159,7 +169,7 @@ public class NaveScript : MonoBehaviour {
 	}
 		
 	void OnCollisionEnter2D(Collision2D coll){
-		
+
 		if (coll.relativeVelocity.magnitude > 0.6f)
 			Destroid ();
 		else if (transform.rotation.z > 0.25f || transform.rotation.z < -0.25f)
@@ -222,6 +232,11 @@ public class NaveScript : MonoBehaviour {
     public Vector3 GetvpPosition() { return vpPosition; }
 
 	public void TimeOut(){
+		if (alive)
+			Destroid ();
+	}
+
+	private void NaveOutSpace(){
 		if (alive)
 			Destroid ();
 	}
