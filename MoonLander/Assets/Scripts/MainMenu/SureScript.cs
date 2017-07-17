@@ -51,7 +51,7 @@ public class SureScript : MonoBehaviour {
 
 
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Return)) {
 			switch (optionSlect) {
 			case 1:
 				soundManager.PlayFX_MenuBack ();

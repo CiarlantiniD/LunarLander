@@ -56,7 +56,7 @@ public class MainMenu : MonoBehaviour {
 			soundManager.PlayFX_MenuMove ();
 		}
 			
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Return)) {
 			switch (optionSlect) {
 			case 0:
 				soundManager.PlayFX_MenuStart ();

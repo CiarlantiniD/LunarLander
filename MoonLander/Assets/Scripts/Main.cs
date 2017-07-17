@@ -106,7 +106,7 @@ public class Main : MonoBehaviour {
 
 
         // ------ Pause -------
-        if (Input.GetKeyDown(KeyCode.Escape)){
+		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return)){
 			pauseStatus = naveScript.PauseStatus ();
 			uiPause = pauseStatus;
 

@@ -55,7 +55,7 @@ public class OptionsConfScript : MonoBehaviour {
 
 
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Return)) {
 			switch (optionSlect) {
 			case 0:
 				soundManager.PlayFX_MenuSelect ();
