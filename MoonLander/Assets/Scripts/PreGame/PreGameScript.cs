@@ -26,17 +26,17 @@ public class PreGameScript : MonoBehaviour {
 
 		if (timer > 1.7f) {
 			if (Input.GetKeyDown (KeyCode.Space))
-				timer = 5.1f;
+				timer = 9.1f;
 		}
 
 
-		if (timer > 5f) {
+		if (timer > 9f) {
 			for (int i = 1; i < texts.Length; i++) {
 				texts [i].gameObject.SetActive (false);
 			}
 		}
 
-		if (timer > 6f)
+		if (timer > 10f)
 			SceneManager.LoadScene ("Game");
 		
 	}

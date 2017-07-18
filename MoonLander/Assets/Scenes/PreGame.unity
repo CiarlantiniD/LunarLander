@@ -248,7 +248,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CONTROLS
+  m_Text: INSTRUCTIONS
 --- !u!222 &1341285765
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -506,7 +506,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.8
-  m_Text: 'Move whit - Arrows
+  m_Text: 'Slowly land the ship where you are instructed
+
+
+    Move whit - Arrows
 
     AceIeration whit - Space
 
